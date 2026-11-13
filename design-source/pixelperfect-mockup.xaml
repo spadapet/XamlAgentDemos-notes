@@ -1,0 +1,72 @@
+<!--
+    Designer's target for the PixelPerfect demo. Keep this file out of the chat context during the demo:
+    the AI should work only from design\mockup.png and the running app.
+    Regenerate the PNG with Render-Mockup.ps1 in the repo root.
+-->
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      Width="744"
+      Height="561"
+      Background="#F2F0F7">
+    <Border Width="380"
+            Padding="32"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="White"
+            CornerRadius="12">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24"
+                              Opacity="0.14"
+                              ShadowDepth="4"
+                              Color="#2A1B6B" />
+        </Border.Effect>
+        <StackPanel>
+            <Ellipse Width="40"
+                     Height="40"
+                     Margin="0,0,0,16"
+                     HorizontalAlignment="Left"
+                     Fill="#5B3FD9" />
+            <TextBlock FontSize="28"
+                       FontWeight="SemiBold"
+                       Foreground="#1B1D21"
+                       Text="Sign in to Contoso" />
+            <TextBlock Margin="0,4,0,24"
+                       Foreground="#6B7280"
+                       Text="Use your work or school account" />
+
+            <TextBlock Foreground="#374151" Text="Email" />
+            <TextBox Height="36"
+                     Margin="0,4,0,12"
+                     Padding="8,0"
+                     VerticalContentAlignment="Center" />
+
+            <TextBlock Foreground="#374151" Text="Password" />
+            <PasswordBox Height="36"
+                         Margin="0,4,0,12"
+                         Padding="8,0"
+                         VerticalContentAlignment="Center" />
+
+            <TextBlock Margin="0,0,0,20"
+                       HorizontalAlignment="Right"
+                       Foreground="#5B3FD9"
+                       Text="Forgot password?" />
+
+            <Button Height="40"
+                    Content="Sign in"
+                    FontWeight="SemiBold"
+                    Foreground="White">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#5B3FD9" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <TextBlock Margin="0,20,0,0"
+                       HorizontalAlignment="Center"
+                       Foreground="#6B7280"
+                       Text="New here? Create an account" />
+        </StackPanel>
+    </Border>
+</Grid>
