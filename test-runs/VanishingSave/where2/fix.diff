@@ -1,0 +1,66 @@
+diff --git a/src/VanishingSave/MainWindow.xaml b/src/VanishingSave/MainWindow.xaml
+index bb8122a..7933628 100644
+--- a/src/VanishingSave/MainWindow.xaml
++++ b/src/VanishingSave/MainWindow.xaml
+@@ -29,9 +29,8 @@
+             <Setter Property="Margin" Value="8,0,0,0" />
+             <Setter Property="Padding" Value="16,6" />
+             <Style.Triggers>
+-                <!-- Fade out buttons that can't be used yet. -->
+                 <Trigger Property="IsEnabled" Value="False">
+-                    <Setter Property="Opacity" Value="0" />
++                    <Setter Property="Opacity" Value="0.5" />
+                 </Trigger>
+             </Style.Triggers>
+         </Style>
+@@ -102,6 +101,7 @@
+             <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="*" />
+                 <ColumnDefinition Width="Auto" />
++                <ColumnDefinition Width="Auto" />
+                 <ColumnDefinition x:Name="SaveColumn" Width="Auto" />
+             </Grid.ColumnDefinitions>
+ 
+@@ -110,23 +110,22 @@
+                        Text="Changes are saved to Contoso CRM." />
+ 
+             <Button x:Name="CancelButton"
+-                    Grid.Column="1"
++                    Grid.Column="2"
+                     Command="{Binding CancelCommand}"
+                     Content="Cancel"
+                     Style="{StaticResource FooterButtonStyle}" />
+ 
+             <Button x:Name="SaveButton"
+-                    Grid.Column="2"
++                    Grid.Column="3"
+                     Command="{Binding SaveCommand}"
+                     Content="Save"
+                     IsDefault="True"
+                     Style="{StaticResource FooterButtonStyle}"
+-                    Visibility="{Binding CanSave, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
++                    Visibility="{Binding IsSaveAvailable, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
+ 
+             <!-- Shows "Offline - changes will sync later" when the connection drops. -->
+             <Border x:Name="SyncStatusHost"
+-                    Grid.Column="2"
+-                    Panel.ZIndex="1"
++                    Grid.Column="1"
+                     Background="White">
+                 <TextBlock x:Name="SyncStatusText"
+                            VerticalAlignment="Center"
+diff --git a/src/VanishingSave/MainWindow.xaml.cs b/src/VanishingSave/MainWindow.xaml.cs
+index 56bb50d..ac479e7 100644
+--- a/src/VanishingSave/MainWindow.xaml.cs
++++ b/src/VanishingSave/MainWindow.xaml.cs
+@@ -12,9 +12,6 @@ public partial class MainWindow : Window
+ 
+     private void OnLoaded(object sender, RoutedEventArgs e)
+     {
+-        if (FooterSettings.UseCompactFooter)
+-        {
+-            this.SaveColumn.Width = new GridLength(0);
+-        }
++        this.SaveColumn.Width = GridLength.Auto;
+     }
+ }

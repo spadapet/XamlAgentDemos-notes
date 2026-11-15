@@ -1,0 +1,48 @@
+diff --git a/src/VanishingSave/FooterSettings.cs b/src/VanishingSave/FooterSettings.cs
+index 27522f0..0f02590 100644
+--- a/src/VanishingSave/FooterSettings.cs
++++ b/src/VanishingSave/FooterSettings.cs
+@@ -4,7 +4,7 @@ public static class FooterSettings
+ {
+     /// <summary>
+     /// Compact footer for small screens: auto-save makes the Save column unnecessary.
+-    /// (Auto-save was cut from v2, but this switch stayed on.)
++    /// (Auto-save was cut from v2, so the compact footer is disabled by default.)
+     /// </summary>
+-    public static bool UseCompactFooter { get; set; } = true;
++    public static bool UseCompactFooter { get; set; } = false;
+ }
+diff --git a/src/VanishingSave/MainWindow.xaml b/src/VanishingSave/MainWindow.xaml
+index bb8122a..cd308f9 100644
+--- a/src/VanishingSave/MainWindow.xaml
++++ b/src/VanishingSave/MainWindow.xaml
+@@ -28,12 +28,6 @@
+             <Setter Property="MinWidth" Value="88" />
+             <Setter Property="Margin" Value="8,0,0,0" />
+             <Setter Property="Padding" Value="16,6" />
+-            <Style.Triggers>
+-                <!-- Fade out buttons that can't be used yet. -->
+-                <Trigger Property="IsEnabled" Value="False">
+-                    <Setter Property="Opacity" Value="0" />
+-                </Trigger>
+-            </Style.Triggers>
+         </Style>
+     </Window.Resources>
+ 
+@@ -121,13 +115,14 @@
+                     Content="Save"
+                     IsDefault="True"
+                     Style="{StaticResource FooterButtonStyle}"
+-                    Visibility="{Binding CanSave, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
++                    Visibility="{Binding IsSaveAvailable, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
+ 
+             <!-- Shows "Offline - changes will sync later" when the connection drops. -->
+             <Border x:Name="SyncStatusHost"
+                     Grid.Column="2"
+                     Panel.ZIndex="1"
+-                    Background="White">
++                    Background="White"
++                    Visibility="Collapsed">
+                 <TextBlock x:Name="SyncStatusText"
+                            VerticalAlignment="Center"
+                            Foreground="#B54708"
