@@ -1,0 +1,11 @@
+[10:59:25] Stop + reset
+[10:59:29] Start SlowScroll
+[10:59:53] App pid 59740
+[10:59:58] Send prompt
+[11:00:07] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\6d448f68-7520-4a49-94f5-76ba9687376a
+[11:05:13] Main turn: done
+[11:05:18] Send follow-up
+[11:05:51] Follow-up: done
+[11:05:52] Stats {"tools":{"skill":1,"task":2,"xaml_list_apps":3,"get_projects_in_solution":2,"powershell":3,"xaml_find_elements":12,"xaml_capture_image":9,"view":2,"glob":1,"get_files_in_project":1,"get_file":12,"xaml_get_element_bounds":2,"xaml_get_element_properties":9,"xaml_list_windows":1,"xaml_get_visual_tree":2,"rg":2,"collect_trace_from_app":1,"xaml_explain_property_value":6,"get_open_perf_traces":1,"lookup_vs":1,"read_agent":2,"replace_string_in_file":4,"xaml_apply_hot_reload":5,"multi_replace_string_in_file":1,"xaml_get_hot_reload_status":1,"xaml_get_binding_failures":3,"xaml_interact":3,"ask_question":1,"debugger_ui_tree":3,"get_output_window_logs":5,"debugger_launch":1,"debugger_get_threads":1,"debugger_wait":1,"debugger_get_output_window_text":1,"task_complete":2},"failed":6,"images":5}
+[11:05:52] Debugger mode at end: 3 (1=design 2=break 3=run)
+[11:05:55] Finished

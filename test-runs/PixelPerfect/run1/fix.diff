@@ -1,0 +1,163 @@
+diff --git a/src/PixelPerfect/MainWindow.xaml b/src/PixelPerfect/MainWindow.xaml
+index 94dcbf0..1f8a0f4 100644
+--- a/src/PixelPerfect/MainWindow.xaml
++++ b/src/PixelPerfect/MainWindow.xaml
+@@ -4,69 +4,101 @@
+         Title="Contoso - Sign in"
+         Width="760"
+         Height="600"
+-        Background="White">
++        Background="#F2F0F7"
++        UseLayoutRounding="True">
+     <Grid>
+-        <Border x:Name="SignInCard"
+-                Width="380"
+-                Padding="16"
+-                HorizontalAlignment="Center"
+-                VerticalAlignment="Center"
+-                Background="White"
+-                BorderBrush="#DDDDDD"
+-                BorderThickness="1"
+-                CornerRadius="4">
+-            <StackPanel>
+-                <Ellipse x:Name="Logo"
+-                         Width="40"
+-                         Height="40"
+-                         Margin="0,0,0,16"
+-                         HorizontalAlignment="Left"
+-                         Fill="#5B3FD9" />
+-                <TextBlock x:Name="TitleText"
+-                           FontSize="20"
+-                           Foreground="#1B1D21"
+-                           Text="Sign in to Contoso" />
+-                <TextBlock x:Name="Subtitle"
+-                           Margin="0,4,0,16"
+-                           Foreground="#6B7280"
+-                           Text="Use your work or school account" />
++        <Grid Width="380"
++              HorizontalAlignment="Center"
++              VerticalAlignment="Center">
++            <Border Background="White" CornerRadius="14">
++                <Border.Effect>
++                    <DropShadowEffect BlurRadius="18"
++                                      ShadowDepth="4"
++                                      Opacity="0.12"
++                                      Color="#28213D" />
++                </Border.Effect>
++            </Border>
++            <Border x:Name="SignInCard"
++                    Padding="32"
++                    Background="White"
++                    CornerRadius="14">
++                <StackPanel>
++                    <Ellipse x:Name="Logo"
++                             Width="40"
++                             Height="40"
++                             Margin="0,0,0,16"
++                             HorizontalAlignment="Left"
++                             Fill="#5B3FD9" />
++                    <TextBlock x:Name="TitleText"
++                               FontSize="28"
++                               FontWeight="SemiBold"
++                               Foreground="#1B1D21"
++                               Text="Sign in to Contoso" />
++                    <TextBlock x:Name="Subtitle"
++                               Margin="0,4,0,24"
++                               Foreground="#6B7280"
++                               Text="Use your work or school account" />
+ 
+-                <TextBlock Foreground="#374151" Text="Email" />
+-                <TextBox x:Name="EmailBox"
+-                         Height="32"
+-                         Margin="0,4,0,4"
+-                         Padding="6,0"
+-                         VerticalContentAlignment="Center"
+-                         AutomationProperties.Name="Email" />
+-
+-                <TextBlock Foreground="#374151" Text="Password" />
+-                <PasswordBox x:Name="PasswordBox"
+-                             Height="32"
+-                             Margin="0,4,0,4"
++                    <TextBlock Foreground="#374151" Text="Email" />
++                    <TextBox x:Name="EmailBox"
++                             Height="36"
++                             Margin="0,4,0,12"
+                              Padding="6,0"
+                              VerticalContentAlignment="Center"
+-                             AutomationProperties.Name="Password" />
++                             AutomationProperties.Name="Email" />
++
++                    <TextBlock Foreground="#374151" Text="Password" />
++                    <PasswordBox x:Name="PasswordBox"
++                                 Height="36"
++                                 Margin="0,4,0,12"
++                                 Padding="6,0"
++                                 VerticalContentAlignment="Center"
++                                 AutomationProperties.Name="Password" />
+ 
+-                <TextBlock x:Name="ForgotPassword"
+-                           Margin="0,4,0,16"
+-                           HorizontalAlignment="Left"
+-                           Foreground="#5B3FD9"
+-                           Text="Forgot password?" />
++                    <TextBlock x:Name="ForgotPassword"
++                               Margin="0,0,0,20"
++                               HorizontalAlignment="Right"
++                               Foreground="#5B3FD9"
++                               Text="Forgot password?" />
+ 
+-                <Button x:Name="SignInButton"
+-                        Width="100"
+-                        Height="34"
+-                        HorizontalAlignment="Left"
+-                        Background="#2D7FF9"
+-                        Content="Sign in"
+-                        Foreground="White" />
++                    <Button x:Name="SignInButton"
++                            Height="40"
++                            HorizontalAlignment="Stretch"
++                            Background="#5B3FD9"
++                            Content="Sign in"
++                            FontWeight="SemiBold"
++                            Foreground="White">
++                        <Button.Template>
++                            <ControlTemplate TargetType="{x:Type Button}">
++                                <Border x:Name="ButtonBorder"
++                                        Background="{TemplateBinding Background}"
++                                        CornerRadius="6">
++                                    <ContentPresenter HorizontalAlignment="Center"
++                                                      VerticalAlignment="Center"
++                                                      RecognizesAccessKey="True" />
++                                </Border>
++                                <ControlTemplate.Triggers>
++                                    <Trigger Property="IsMouseOver" Value="True">
++                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#5035C6" />
++                                    </Trigger>
++                                    <Trigger Property="IsPressed" Value="True">
++                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#452CB0" />
++                                    </Trigger>
++                                    <Trigger Property="IsEnabled" Value="False">
++                                        <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.5" />
++                                    </Trigger>
++                                </ControlTemplate.Triggers>
++                            </ControlTemplate>
++                        </Button.Template>
++                    </Button>
+ 
+-                <TextBlock x:Name="Footer"
+-                           Margin="0,16,0,0"
+-                           HorizontalAlignment="Left"
+-                           Foreground="#6B7280"
+-                           Text="New here? Create an account" />
+-            </StackPanel>
+-        </Border>
++                    <TextBlock x:Name="Footer"
++                               Margin="0,20,0,0"
++                               HorizontalAlignment="Center"
++                               Foreground="#6B7280"
++                               Text="New here? Create an account" />
++                </StackPanel>
++            </Border>
++        </Grid>
+     </Grid>
+ </Window>

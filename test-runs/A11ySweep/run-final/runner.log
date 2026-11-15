@@ -1,0 +1,10 @@
+[23:11:37] Stop + reset
+[23:11:41] Start A11ySweep
+[23:11:56] App pid 23660
+[23:12:03] Send prompt
+ERROR SendWait(^a) failed at Send-Keys, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 46
+at Set-ChatText, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 58
+at Send-ChatPrompt, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 65
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 15
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2

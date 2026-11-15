@@ -1,0 +1,75 @@
+diff --git a/src/PrecedenceWars/MainWindow.xaml b/src/PrecedenceWars/MainWindow.xaml
+index 5d3f83f..d9e5997 100644
+--- a/src/PrecedenceWars/MainWindow.xaml
++++ b/src/PrecedenceWars/MainWindow.xaml
+@@ -103,9 +103,13 @@
+                     <Button x:Name="HoverButton"
+                             Margin="0,8,0,0"
+                             HorizontalAlignment="Left"
+-                            Background="#F3F4F6"
+-                            Content="Hover me"
+-                            Style="{StaticResource HoverButtonStyle}" />
++                            Content="Hover me">
++                        <Button.Style>
++                            <Style BasedOn="{StaticResource HoverButtonStyle}" TargetType="Button">
++                                <Setter Property="Background" Value="#F3F4F6" />
++                            </Style>
++                        </Button.Style>
++                    </Button>
+                     <Button x:Name="HoverButtonOk"
+                             Margin="0,8,0,0"
+                             HorizontalAlignment="Left"
+@@ -118,7 +122,7 @@
+             <Border Style="{StaticResource CardStyle}">
+                 <StackPanel>
+                     <TextBlock Style="{StaticResource CardTitleStyle}" Text="Cart" />
+-                    <TextBlock x:Name="CountText" Text="{Binding ItemCount, StringFormat='{}{0} items in cart'}" />
++                    <TextBlock x:Name="CountText" Text="{Binding Path=ItemCount, StringFormat='{}{0} items in cart'}" />
+                     <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                         <Button x:Name="AddButton"
+                                 Command="{Binding AddItemCommand}"
+@@ -136,6 +140,7 @@
+                 <StackPanel>
+                     <TextBlock Style="{StaticResource CardTitleStyle}" Text="Release notes" />
+                     <TextBlock x:Name="ReleaseNotesText"
++                               FontSize="{Binding Value, ElementName=TextSizeSlider}"
+                                Style="{StaticResource BodyTextStyle}"
+                                Text="Version 4.2 adds gift cards, faster checkout and a new order history page. Drag the Text size slider: this paragraph should grow too." />
+                 </StackPanel>
+diff --git a/src/PrecedenceWars/MainWindow.xaml.cs b/src/PrecedenceWars/MainWindow.xaml.cs
+index 4e37f4f..e019ba8 100644
+--- a/src/PrecedenceWars/MainWindow.xaml.cs
++++ b/src/PrecedenceWars/MainWindow.xaml.cs
+@@ -14,12 +14,12 @@ public partial class MainWindow : Window
+ 
+     private void OnShowBannerClick(object sender, RoutedEventArgs e)
+     {
++        this.WelcomeBanner.BeginAnimation(OpacityProperty, null);
+         this.WelcomeBanner.Opacity = 1;
+     }
+ 
+     private void OnResetClick(object sender, RoutedEventArgs e)
+     {
+         this.viewModel.ItemCount = 0;
+-        this.CountText.Text = "0 items in cart";
+     }
+ }
+diff --git a/src/PrecedenceWars/StoreViewModel.cs b/src/PrecedenceWars/StoreViewModel.cs
+index 972954a..0dff2e0 100644
+--- a/src/PrecedenceWars/StoreViewModel.cs
++++ b/src/PrecedenceWars/StoreViewModel.cs
+@@ -58,10 +58,11 @@ public sealed class StoreViewModel : ObservableObject
+         catch (TimeoutException ex)
+         {
+             Debug.WriteLine($"Catalog sync failed: {ex.Message}");
+-            return;
+         }
+-
+-        this.IsBusy = false;
++        finally
++        {
++            this.IsBusy = false;
++        }
+     }
+ 
+     // Simulates the offline case: the catalog service isn't reachable.

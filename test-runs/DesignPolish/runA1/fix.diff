@@ -1,0 +1,308 @@
+diff --git a/src/DesignPolish/MainWindow.xaml b/src/DesignPolish/MainWindow.xaml
+index dad2c15..1f3a8fc 100644
+--- a/src/DesignPolish/MainWindow.xaml
++++ b/src/DesignPolish/MainWindow.xaml
+@@ -1,156 +1,225 @@
+ <Window x:Class="DesignPolish.MainWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+         Title="Contoso Pricing"
+         Width="980"
+         Height="700"
+-        Background="#F5F5FA">
++        Background="{DynamicResource BackgroundBrush}">
++    <Window.Resources>
++        <SolidColorBrush x:Key="TextPrimaryBrush" Color="#1F2937" />
++        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#6B7280" />
++        <SolidColorBrush x:Key="AccentBrush" Color="#5B3FD9" />
++        <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF" />
++        <SolidColorBrush x:Key="BackgroundBrush" Color="#F5F5FA" />
++        <SolidColorBrush x:Key="BorderBrush" Color="#E5E7EB" />
++
++        <sys:Double x:Key="BodyFontSize">14</sys:Double>
++        <sys:Double x:Key="SubtitleFontSize">16</sys:Double>
++        <sys:Double x:Key="TitleFontSize">20</sys:Double>
++        <sys:Double x:Key="DisplayFontSize">28</sys:Double>
++        <CornerRadius x:Key="ControlCornerRadius">4</CornerRadius>
++        <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
++
++        <Thickness x:Key="HeroPadding">32</Thickness>
++        <Thickness x:Key="PlansMargin">24,24,24,0</Thickness>
++        <Thickness x:Key="FirstCardMargin">0,0,8,0</Thickness>
++        <Thickness x:Key="MiddleCardMargin">8,0,8,0</Thickness>
++        <Thickness x:Key="LastCardMargin">8,0,0,0</Thickness>
++        <Thickness x:Key="CardPadding">24</Thickness>
++        <Thickness x:Key="FaqMargin">24,32,24,24</Thickness>
++        <Thickness x:Key="TopSpace4">0,4,0,0</Thickness>
++        <Thickness x:Key="TopSpace8">0,8,0,0</Thickness>
++        <Thickness x:Key="TopSpace12">0,12,0,0</Thickness>
++        <Thickness x:Key="TopSpace16">0,16,0,0</Thickness>
++        <Thickness x:Key="ButtonPadding">16,8</Thickness>
++
++        <Style TargetType="Button">
++            <Setter Property="FontSize" Value="{StaticResource BodyFontSize}" />
++            <Setter Property="Padding" Value="{StaticResource ButtonPadding}" />
++            <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
++            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
++            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
++            <Setter Property="BorderThickness" Value="1" />
++            <Setter Property="HorizontalContentAlignment" Value="Center" />
++            <Setter Property="VerticalContentAlignment" Value="Center" />
++            <Setter Property="Template">
++                <Setter.Value>
++                    <ControlTemplate TargetType="Button">
++                        <Border x:Name="ButtonBorder"
++                                Background="{TemplateBinding Background}"
++                                BorderBrush="{TemplateBinding BorderBrush}"
++                                BorderThickness="{TemplateBinding BorderThickness}"
++                                CornerRadius="{StaticResource ControlCornerRadius}">
++                            <ContentPresenter Margin="{TemplateBinding Padding}"
++                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
++                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
++                                              RecognizesAccessKey="True" />
++                        </Border>
++                        <ControlTemplate.Triggers>
++                            <Trigger Property="IsMouseOver" Value="True">
++                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}" />
++                            </Trigger>
++                            <Trigger Property="IsPressed" Value="True">
++                                <Setter Property="Background" Value="{StaticResource AccentBrush}" />
++                                <Setter Property="Foreground" Value="{StaticResource SurfaceBrush}" />
++                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}" />
++                            </Trigger>
++                            <Trigger Property="IsEnabled" Value="False">
++                                <Setter Property="Background" Value="{StaticResource BorderBrush}" />
++                                <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
++                            </Trigger>
++                        </ControlTemplate.Triggers>
++                    </ControlTemplate>
++                </Setter.Value>
++            </Setter>
++        </Style>
++        <Style x:Key="HeroButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
++            <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
++        </Style>
++        <Style x:Key="AccentButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
++            <Setter Property="Background" Value="{StaticResource AccentBrush}" />
++            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
++            <Setter Property="Foreground" Value="{StaticResource SurfaceBrush}" />
++        </Style>
++    </Window.Resources>
+     <ScrollViewer VerticalScrollBarVisibility="Auto">
+         <StackPanel>
+             <!-- Hero -->
+             <Border x:Name="Hero"
+-                    Padding="40,36"
+-                    Background="#5B3FD9">
++                    Padding="{StaticResource HeroPadding}"
++                    Background="{StaticResource AccentBrush}">
+                 <StackPanel x:Name="HeroContent" HorizontalAlignment="Center">
+                     <TextBlock x:Name="HeroTitle"
+                                HorizontalAlignment="Center"
+-                               FontSize="30"
++                               FontSize="{StaticResource DisplayFontSize}"
+                                FontWeight="Bold"
+-                               Foreground="White"
++                               Foreground="{StaticResource SurfaceBrush}"
+                                Text="Plans that grow with your team" />
+                     <TextBlock x:Name="HeroSubtitle"
+-                               Margin="0,9,0,0"
++                               Margin="{StaticResource TopSpace8}"
+                                HorizontalAlignment="Center"
+-                               FontSize="15"
+-                               Foreground="#E0DBFF"
++                               FontSize="{StaticResource BodyFontSize}"
++                               Foreground="{StaticResource SurfaceBrush}"
+                                Text="Start free. Upgrade when you need more projects, storage and support." />
+                     <Button x:Name="HeroCta"
+-                            Margin="0,18,0,0"
+-                            Padding="18,7"
++                            Margin="{StaticResource TopSpace16}"
+                             HorizontalAlignment="Center"
+-                            Background="White"
+-                            BorderThickness="0"
+                             Content="Start free trial"
+-                            FontSize="14"
+-                            Foreground="#5A3ED8" />
++                            Style="{StaticResource HeroButtonStyle}" />
+                 </StackPanel>
+             </Border>
+ 
+             <!-- Plans -->
+             <UniformGrid x:Name="Plans"
+-                         Margin="22,26,22,0"
++                         Margin="{StaticResource PlansMargin}"
+                          Columns="3">
+                 <Border x:Name="FreePlan"
+-                        Margin="0,0,13,0"
+-                        Padding="20"
+-                        Background="White"
+-                        BorderBrush="#E5E7EB"
++                        Margin="{StaticResource FirstCardMargin}"
++                        Padding="{StaticResource CardPadding}"
++                        Background="{StaticResource SurfaceBrush}"
++                        BorderBrush="{StaticResource BorderBrush}"
+                         BorderThickness="1"
+-                        CornerRadius="8">
++                        CornerRadius="{StaticResource CardCornerRadius}">
+                     <StackPanel>
+-                        <TextBlock FontSize="18"
++                        <TextBlock FontSize="{StaticResource SubtitleFontSize}"
+                                    FontWeight="SemiBold"
+-                                   Foreground="#333333"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="Free" />
+-                        <TextBlock Margin="0,6,0,0"
+-                                   FontSize="28"
++                        <TextBlock Margin="{StaticResource TopSpace8}"
++                                   FontSize="{StaticResource DisplayFontSize}"
+                                    FontWeight="Bold"
+-                                   Foreground="#333333"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="$0" />
+-                        <TextBlock Margin="0,10,0,0"
+-                                   FontSize="13"
+-                                   Foreground="#6B7280"
++                        <TextBlock Margin="{StaticResource TopSpace12}"
++                                   FontSize="{StaticResource BodyFontSize}"
++                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                    Text="3 projects, 1 GB storage, community support"
+                                    TextWrapping="Wrap" />
+-                        <Button Margin="0,15,0,0"
+-                                Padding="12,6"
++                        <Button Margin="{StaticResource TopSpace16}"
+                                 Content="Get started" />
+                     </StackPanel>
+                 </Border>
+ 
+                 <Border x:Name="TeamPlan"
+-                        Margin="7,0,7,0"
+-                        Padding="22"
+-                        Background="White"
+-                        BorderBrush="#5C40DA"
++                        Margin="{StaticResource MiddleCardMargin}"
++                        Padding="{StaticResource CardPadding}"
++                        Background="{StaticResource SurfaceBrush}"
++                        BorderBrush="{StaticResource AccentBrush}"
+                         BorderThickness="2"
+-                        CornerRadius="10">
++                        CornerRadius="{StaticResource CardCornerRadius}">
+                     <StackPanel>
+-                        <TextBlock FontSize="18"
++                        <TextBlock FontSize="{StaticResource SubtitleFontSize}"
+                                    FontWeight="SemiBold"
+-                                   Foreground="#343434"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="Team" />
+-                        <TextBlock Margin="0,6,0,0"
+-                                   FontSize="26"
++                        <TextBlock Margin="{StaticResource TopSpace8}"
++                                   FontSize="{StaticResource DisplayFontSize}"
+                                    FontWeight="Bold"
+-                                   Foreground="#343434"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="$12 / user" />
+-                        <TextBlock Margin="0,10,0,0"
+-                                   FontSize="13.5"
+-                                   Foreground="#6E7380"
++                        <TextBlock Margin="{StaticResource TopSpace12}"
++                                   FontSize="{StaticResource BodyFontSize}"
++                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                    Text="Unlimited projects, 100 GB storage, email support"
+                                    TextWrapping="Wrap" />
+-                        <Button Margin="0,16,0,0"
+-                                Padding="12,7"
+-                                Background="#5A3ED8"
+-                                BorderThickness="0"
++                        <Button Margin="{StaticResource TopSpace16}"
+                                 Content="Start trial"
+-                                Foreground="White" />
++                                Style="{StaticResource AccentButtonStyle}" />
+                     </StackPanel>
+                 </Border>
+ 
+                 <Border x:Name="EnterprisePlan"
+-                        Margin="13,0,0,0"
+-                        Padding="18"
+-                        Background="White"
+-                        BorderBrush="#E4E6EA"
++                        Margin="{StaticResource LastCardMargin}"
++                        Padding="{StaticResource CardPadding}"
++                        Background="{StaticResource SurfaceBrush}"
++                        BorderBrush="{StaticResource BorderBrush}"
+                         BorderThickness="1"
+-                        CornerRadius="6">
++                        CornerRadius="{StaticResource CardCornerRadius}">
+                     <StackPanel>
+-                        <TextBlock FontSize="17"
++                        <TextBlock FontSize="{StaticResource SubtitleFontSize}"
+                                    FontWeight="SemiBold"
+-                                   Foreground="#2F2F2F"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="Enterprise" />
+-                        <TextBlock Margin="0,5,0,0"
+-                                   FontSize="28"
++                        <TextBlock Margin="{StaticResource TopSpace8}"
++                                   FontSize="{StaticResource DisplayFontSize}"
+                                    FontWeight="Bold"
+-                                   Foreground="#2F2F2F"
++                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                    Text="Contact us" />
+-                        <TextBlock Margin="0,11,0,0"
+-                                   FontSize="14"
+-                                   Foreground="#6B7280"
++                        <TextBlock Margin="{StaticResource TopSpace12}"
++                                   FontSize="{StaticResource BodyFontSize}"
++                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                    Text="SSO, audit logs, 99.9% SLA and a dedicated account manager"
+                                    TextWrapping="Wrap" />
+-                        <Button Margin="0,14,0,0"
+-                                Padding="14,5"
++                        <Button Margin="{StaticResource TopSpace16}"
+                                 Content="Talk to sales" />
+                     </StackPanel>
+                 </Border>
+             </UniformGrid>
+ 
+             <!-- FAQ -->
+-            <StackPanel x:Name="Faq" Margin="24,30,24,24">
+-                <TextBlock FontSize="21"
++            <StackPanel x:Name="Faq" Margin="{StaticResource FaqMargin}">
++                <TextBlock FontSize="{StaticResource TitleFontSize}"
+                            FontWeight="SemiBold"
+-                           Foreground="#1F2937"
++                           Foreground="{StaticResource TextPrimaryBrush}"
+                            Text="Frequently asked questions" />
+-                <TextBlock Margin="0,10,0,0"
+-                           FontSize="15"
++                <TextBlock Margin="{StaticResource TopSpace12}"
++                           FontSize="{StaticResource SubtitleFontSize}"
+                            FontWeight="SemiBold"
+-                           Foreground="#1F2937"
++                           Foreground="{StaticResource TextPrimaryBrush}"
+                            Text="Can I change plans later?" />
+-                <TextBlock Margin="0,3,0,0"
+-                           FontSize="13"
+-                           Foreground="#6B6F7A"
++                <TextBlock Margin="{StaticResource TopSpace4}"
++                           FontSize="{StaticResource BodyFontSize}"
++                           Foreground="{StaticResource TextSecondaryBrush}"
+                            Text="Yes. Upgrades apply immediately; downgrades apply at the next billing cycle." />
+-                <TextBlock Margin="0,14,0,0"
+-                           FontSize="16"
++                <TextBlock Margin="{StaticResource TopSpace16}"
++                           FontSize="{StaticResource SubtitleFontSize}"
+                            FontWeight="SemiBold"
+-                           Foreground="#1F2937"
++                           Foreground="{StaticResource TextPrimaryBrush}"
+                            Text="Do you offer discounts for nonprofits?" />
+-                <TextBlock Margin="0,5,0,0"
+-                           FontSize="14"
+-                           Foreground="#6B7280"
++                <TextBlock Margin="{StaticResource TopSpace4}"
++                           FontSize="{StaticResource BodyFontSize}"
++                           Foreground="{StaticResource TextSecondaryBrush}"
+                            Text="Yes, 50% off the Team plan. Contact sales with your registration details." />
+             </StackPanel>
+         </StackPanel>

@@ -1,0 +1,66 @@
+diff --git a/src/A11ySweep/MainWindow.xaml b/src/A11ySweep/MainWindow.xaml
+index 1674c74..70bcb3a 100644
+--- a/src/A11ySweep/MainWindow.xaml
++++ b/src/A11ySweep/MainWindow.xaml
+@@ -49,19 +49,32 @@
+                 DockPanel.Dock="Bottom">
+             <DockPanel>
+                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+-                    <Button x:Name="BackButton" Command="{Binding BackCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="BackButton"
++                            AutomationProperties.Name="Previous episode"
++                            Command="{Binding BackCommand}"
++                            Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M12,4 L4,12 L12,20 M20,4 L12,12 L20,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="PlayButton" Command="{Binding PlayCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="PlayButton"
++                            AutomationProperties.Name="Play"
++                            Command="{Binding PlayCommand}"
++                            Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M6,3 L20,12 L6,21 Z" Fill="#333" />
+                     </Button>
+-                    <Button x:Name="ForwardButton" Command="{Binding ForwardCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ForwardButton"
++                            AutomationProperties.Name="Next episode"
++                            Command="{Binding ForwardCommand}"
++                            Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M4,4 L12,12 L4,20 M12,4 L20,12 L12,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="ShuffleButton" Command="{Binding ShuffleCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ShuffleButton"
++                            AutomationProperties.Name="Shuffle episodes"
++                            Command="{Binding ShuffleCommand}"
++                            Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M3,7 H8 L16,17 H21 M3,17 H8 L16,7 H21" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+                     <ToggleButton x:Name="LikeButton"
++                                  AutomationProperties.Name="Like episode"
+                                   Width="40"
+                                   Height="40"
+                                   Background="Transparent"
+@@ -70,6 +83,7 @@
+                     </ToggleButton>
+                 </StackPanel>
+                 <Slider x:Name="VolumeSlider"
++                        AutomationProperties.Name="Volume"
+                         Width="140"
+                         VerticalAlignment="Center"
+                         DockPanel.Dock="Right"
+@@ -89,10 +103,14 @@
+             <TextBlock Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Text="Search" />
+-            <TextBox x:Name="SearchBox" Width="260" />
++            <TextBox x:Name="SearchBox"
++                     AutomationProperties.Name="Search episodes"
++                     Width="260" />
+         </StackPanel>
+ 
+-        <ListBox x:Name="EpisodeList" ItemsSource="{Binding Episodes}">
++        <ListBox x:Name="EpisodeList"
++                 AutomationProperties.Name="Episodes"
++                 ItemsSource="{Binding Episodes}">
+             <ListBox.ItemTemplate>
+                 <DataTemplate>
+                     <StackPanel Margin="4,6">

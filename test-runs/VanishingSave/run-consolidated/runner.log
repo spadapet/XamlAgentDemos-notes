@@ -1,0 +1,18 @@
+[21:43:19] Stop + reset
+ERROR You cannot call a method on a null-valued expression. at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at Invoke-Dte, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 88
+at Stop-Demo, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 10
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2
+[22:03:30] Stop + reset
+[22:03:33] Start VanishingSave
+[22:03:46] App pid 26616
+[22:03:51] Send prompt
+[22:03:56] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\e4c67325-2aa0-4c4e-8c3d-59db07cc2da7
+[22:05:56] Main turn: done
+[22:06:01] Send follow-up
+[22:06:33] Follow-up: done
+[22:06:33] Stats {"tools":{"skill":1,"xaml_get_status":2,"xaml_find_elements":3,"xaml_capture_image":5,"xaml_get_binding_failures":2,"get_projects_in_solution":1,"xaml_hit_test":4,"xaml_get_element_properties":4,"xaml_get_visual_tree":1,"get_file":7,"view":1,"powershell":3,"xaml_explain_property_value":1,"xaml_get_element_bounds":1,"rg":1,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":3,"xaml_get_hot_reload_log":1,"replace_string_in_file":2,"xaml_clear_binding_failures":1,"xaml_interact":3,"xaml_set_element_property":2,"task_complete":2},"failed":0,"images":4}
+[22:06:33] Debugger mode at end: 3 (1=design 2=break 3=run)
+[22:06:37] Finished

@@ -1,0 +1,47 @@
+diff --git a/src/GhostClicks/MainWindow.xaml b/src/GhostClicks/MainWindow.xaml
+index 831bf9a..2bb14ba 100644
+--- a/src/GhostClicks/MainWindow.xaml
++++ b/src/GhostClicks/MainWindow.xaml
+@@ -14,10 +14,8 @@
+             <RowDefinition Height="Auto" />
+         </Grid.RowDefinitions>
+ 
+-        <!-- Decorative header; clicks pass through to the window so it can be dragged. -->
+         <Border x:Name="HeaderBand"
+-                Padding="20,14"
+-                IsHitTestVisible="False">
++                Padding="20,14">
+             <Border.Background>
+                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                     <GradientStop Offset="0" Color="#3A2BB8" />
+@@ -48,6 +46,7 @@
+                     <Border x:Name="MessageRow"
+                             Margin="0,0,0,4"
+                             Padding="12,10"
++                            Background="Transparent"
+                             BorderBrush="#E6E8EE"
+                             BorderThickness="0,0,0,1"
+                             Cursor="Hand"
+@@ -87,8 +86,8 @@
+                        Margin="0,0,150,0"
+                        Padding="0,4"
+                        HorizontalAlignment="Right"
+-                       Background="Transparent"
+                        Foreground="#6B7280"
++                       IsHitTestVisible="False"
+                        Text="Page 1 of 12" />
+         </Grid>
+ 
+@@ -115,10 +114,10 @@
+                     Tag="Archive" />
+         </StackPanel>
+ 
+-        <!-- Toast notifications appear above the action bar and fade out. -->
++        <!-- Toast notifications appear above the action bar and fade out; they must never block input. -->
+         <Border x:Name="ToastHost"
+                 Grid.Row="3"
+-                Background="Transparent">
++                IsHitTestVisible="False">
+             <Border x:Name="Toast"
+                     Margin="0,0,12,12"
+                     Padding="14,8"

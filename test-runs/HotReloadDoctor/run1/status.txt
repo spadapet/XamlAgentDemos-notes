@@ -1,0 +1,2 @@
+ M src/HotReloadDoctor/MainWindow.xaml
+ M src/HotReloadDoctor/Skins/Skin.xaml

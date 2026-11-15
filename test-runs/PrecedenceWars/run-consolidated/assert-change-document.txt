@@ -1,0 +1,10 @@
+Abort
+Retry
+Ignore
+The scope change-document was not disposed correctly, please investigate why the scope wasn't disposed.
+   at Microsoft.VisualStudio.DesignTools.Utility.Telemetry.TelemetryScopeBase..ctor(OperationEvent operationEvent, String areaName, IEnumerable`1 scopeWideProperties, ITelemetryService telemetryService)
+   at Microsoft.VisualStudio.DesignTools.Utility.Telemetry.VsTelemetryScope`1..ctor(TelemetryScope`1 telemetryScope, String areaName, IEnumerable`1 scopeWideProperties, ITelemetryService telemetryService)
+   at Microsoft.VisualStudio.DesignTools.Utility.Telemetry.VsTelemetryRecorder.StartTelemetryScope[T](Func`4 scopeFactory, String areaName, String fullEventName, IEnumerable`1 startEventProperties, IEnumerable`1 scopeWideProperties)
+   at Microsoft.VisualStudio.DesignTools.Utility.Telemetry.VsTelemetryRecorder.StartUserTask(String areaName, String fullEventName, IEnumerable`1 startEventProperties, IEnumerable`1 scopeWideProperties)
+   at Microsoft.VisualStudio.DesignTools.Utility.Telemetry.Telemetry......
+<truncated>

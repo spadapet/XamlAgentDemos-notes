@@ -1,0 +1,11 @@
+[20:33:18] Stop + reset
+[20:33:21] Start ThemeBreaker
+[20:33:33] App pid 67224
+[20:33:33] Pre-action
+[20:33:43] Send prompt
+[20:33:56] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\9c3e61eb-902c-48fb-b60c-e928fef1f8b9
+[20:38:05] Main turn: done
+[20:38:10] Send follow-up
+[20:38:40] Follow-up: done
+[20:38:41] Stats {"tools":{"skill":2,"xaml_list_apps":4,"xaml_capture_image":6,"xaml_get_visual_tree":4,"xaml_get_resource_dictionaries":2,"powershell":7,"view":2,"get_file":10,"glob":2,"xaml_explain_property_value":13,"xaml_find_resource":9,"xaml_get_element_styles":2,"xaml_get_element_properties":6,"rg":1,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_interact":3,"xaml_get_hot_reload_status":1,"xaml_get_hot_reload_log":1,"task":2,"debugger_stop_debugging":1,"run_build":1,"list_agents":1,"write_agent":1,"debugger_enumerate_processes":2,"debugger_launch":1,"xaml_find_elements":1,"xaml_get_binding_failures":1,"task_complete":2},"failed":2,"images":5}
+[20:38:44] Finished

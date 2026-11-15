@@ -1,0 +1,18 @@
+[21:43:19] Stop + reset
+ERROR You cannot call a method on a null-valued expression. at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at Invoke-Dte, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 88
+at Stop-Demo, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 10
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2
+[21:50:52] Stop + reset
+[21:50:56] Start BindingStorm
+[21:51:12] App pid 49320
+[21:51:17] Send prompt
+[21:51:22] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\a9a98a4d-87ac-4559-bb2c-7ab3596353d2
+[21:56:18] Main turn: done
+[21:56:23] Send follow-up
+[21:57:12] Follow-up: done
+[21:57:12] Stats {"tools":{"skill":1,"xaml_get_status":7,"xaml_get_binding_failures":7,"xaml_get_visual_tree":3,"xaml_find_elements":11,"xaml_clear_binding_failures":6,"get_file":9,"glob":2,"xaml_interact":20,"xaml_capture_image":6,"rg":1,"xaml_get_element_properties":4,"multi_replace_string_in_file":2,"xaml_apply_hot_reload":2,"xaml_get_hot_reload_log":2,"powershell":3,"task_complete":2},"failed":0,"images":2}
+[21:57:12] Debugger mode at end: 3 (1=design 2=break 3=run)
+[21:57:16] Finished

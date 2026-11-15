@@ -1,0 +1,173 @@
+diff --git a/src/GermanReady/MainWindow.xaml b/src/GermanReady/MainWindow.xaml
+index 9c822c8..75e603f 100644
+--- a/src/GermanReady/MainWindow.xaml
++++ b/src/GermanReady/MainWindow.xaml
+@@ -5,24 +5,33 @@
+         Title="Contoso Store"
+         Width="720"
+         Height="560"
++        MinWidth="500"
+         Background="White">
+     <Window.Resources>
+         <Style x:Key="FieldLabelStyle" TargetType="TextBlock">
+             <Setter Property="Margin" Value="0,0,8,10" />
+             <Setter Property="VerticalAlignment" Value="Center" />
+             <Setter Property="Foreground" Value="#374151" />
++            <Setter Property="TextWrapping" Value="Wrap" />
+         </Style>
+         <Style x:Key="FieldStyle" TargetType="TextBox">
+-            <Setter Property="Height" Value="28" />
++            <Setter Property="MinHeight" Value="28" />
+             <Setter Property="Margin" Value="0,0,0,10" />
+             <Setter Property="VerticalContentAlignment" Value="Center" />
+         </Style>
++        <DataTemplate x:Key="WrappingContentTemplate">
++            <TextBlock Text="{Binding}" TextWrapping="Wrap" />
++        </DataTemplate>
++        <Style TargetType="Button">
++            <Setter Property="MaxWidth" Value="200" />
++            <Setter Property="ContentTemplate" Value="{StaticResource WrappingContentTemplate}" />
++        </Style>
+     </Window.Resources>
+ 
++    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+     <DockPanel Margin="20">
+-        <StackPanel Margin="0,0,0,12"
+-                    DockPanel.Dock="Top"
+-                    Orientation="Horizontal">
++        <WrapPanel Margin="0,0,0,12"
++                   DockPanel.Dock="Top">
+             <TextBlock Margin="0,0,8,0" Text="Language:" />
+             <RadioButton x:Name="EnglishOption"
+                          Margin="0,0,12,0"
+@@ -42,10 +51,9 @@
+                          Content="Pseudo-loc"
+                          GroupName="Language"
+                          Tag="qps" />
+-        </StackPanel>
++        </WrapPanel>
+ 
+         <Border x:Name="Header"
+-                Height="58"
+                 Margin="0,0,0,12"
+                 Padding="12,6"
+                 Background="#F3F4F6"
+@@ -55,7 +63,8 @@
+                 <TextBlock x:Name="TitleText"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+-                           Text="{Binding [Title], Source={x:Static local:Loc.Instance}}" />
++                           Text="{Binding [Title], Source={x:Static local:Loc.Instance}}"
++                           TextWrapping="Wrap" />
+                 <TextBlock x:Name="SubtitleText"
+                            Foreground="#4B5563"
+                            Text="{Binding [Subtitle], Source={x:Static local:Loc.Instance}}"
+@@ -63,43 +72,48 @@
+             </StackPanel>
+         </Border>
+ 
+-        <DockPanel Margin="0,12,0,0" DockPanel.Dock="Bottom">
++        <WrapPanel Margin="0,12,0,0" DockPanel.Dock="Bottom">
+             <TextBlock x:Name="TotalText"
++                       MaxWidth="200"
++                       Margin="0,0,16,8"
+                        VerticalAlignment="Center"
+-                       DockPanel.Dock="Left"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+-                       Text="{Binding [Total], Source={x:Static local:Loc.Instance}}" />
+-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+-                <Button x:Name="SaveForLaterButton"
+-                        Width="96"
+-                        Height="34"
+-                        Margin="0,0,8,0"
+-                        Content="{Binding [SaveForLater], Source={x:Static local:Loc.Instance}}" />
+-                <Button x:Name="PlaceOrderButton"
+-                        Width="96"
+-                        Height="34"
+-                        Background="#1D4ED8"
+-                        Content="{Binding [PlaceOrder], Source={x:Static local:Loc.Instance}}"
+-                        FontWeight="SemiBold"
+-                        Foreground="White" />
+-            </StackPanel>
+-        </DockPanel>
++                       Text="{Binding [Total], Source={x:Static local:Loc.Instance}}"
++                       TextWrapping="Wrap" />
++            <Button x:Name="SaveForLaterButton"
++                    MinWidth="96"
++                    MinHeight="34"
++                    Margin="0,0,8,8"
++                    Padding="12,4"
++                    Content="{Binding [SaveForLater], Source={x:Static local:Loc.Instance}}" />
++            <Button x:Name="PlaceOrderButton"
++                    MinWidth="96"
++                    MinHeight="34"
++                    Margin="0,0,0,8"
++                    Padding="12,4"
++                    Background="#1D4ED8"
++                    Content="{Binding [PlaceOrder], Source={x:Static local:Loc.Instance}}"
++                    FontWeight="SemiBold"
++                    Foreground="White" />
++        </WrapPanel>
+ 
+-        <StackPanel x:Name="DeliveryNote"
+-                    Margin="0,8,0,0"
+-                    DockPanel.Dock="Bottom"
+-                    Orientation="Horizontal">
++        <DockPanel x:Name="DeliveryNote"
++                   Margin="0,8,0,0"
++                   DockPanel.Dock="Bottom">
+             <Ellipse Width="10"
+                      Height="10"
+                      Margin="0,0,8,0"
++                     DockPanel.Dock="Left"
+                      Fill="#16A34A" />
+-            <TextBlock x:Name="DeliveryNoteText" Text="{Binding [DeliveryNote], Source={x:Static local:Loc.Instance}}" />
+-        </StackPanel>
++            <TextBlock x:Name="DeliveryNoteText"
++                       Text="{Binding [DeliveryNote], Source={x:Static local:Loc.Instance}}"
++                       TextWrapping="Wrap" />
++        </DockPanel>
+ 
+         <Grid x:Name="AddressForm">
+             <Grid.ColumnDefinitions>
+-                <ColumnDefinition Width="90" />
++                <ColumnDefinition Width="Auto" MaxWidth="200" />
+                 <ColumnDefinition Width="*" />
+             </Grid.ColumnDefinitions>
+             <Grid.RowDefinitions>
+@@ -132,25 +146,24 @@
+             <ComboBox x:Name="CountryCombo"
+                       Grid.Row="4"
+                       Grid.Column="1"
+-                      Width="120"
+-                      Height="28"
++                      MinHeight="28"
+                       Margin="0,0,0,10"
+-                      HorizontalAlignment="Left"
+                       SelectedIndex="0">
+-                <ComboBoxItem Content="{Binding [CountryValue], Source={x:Static local:Loc.Instance}}" />
++                <ComboBoxItem Content="{Binding [CountryValue], Source={x:Static local:Loc.Instance}}"
++                              ContentTemplate="{StaticResource WrappingContentTemplate}" />
+             </ComboBox>
+ 
+             <TextBlock Grid.Row="5" Style="{StaticResource FieldLabelStyle}" Text="{Binding [Coupon], Source={x:Static local:Loc.Instance}}" />
+-            <StackPanel Grid.Row="5"
+-                        Grid.Column="1"
+-                        Orientation="Horizontal">
++            <WrapPanel Grid.Row="5" Grid.Column="1">
+                 <TextBox Width="160" Style="{StaticResource FieldStyle}" />
+                 <Button x:Name="ApplyCouponButton"
+-                        Width="64"
+-                        Height="28"
++                        MinWidth="64"
++                        MinHeight="28"
+                         Margin="8,0,0,10"
++                        Padding="8,2"
+                         Content="{Binding [ApplyCoupon], Source={x:Static local:Loc.Instance}}" />
+-            </StackPanel>
++            </WrapPanel>
+         </Grid>
+     </DockPanel>
++    </ScrollViewer>
+ </Window>

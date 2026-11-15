@@ -1,0 +1,11 @@
+[22:34:14] Stop + reset
+[22:34:18] Start StyleMaze
+[22:34:31] App pid 19356
+[22:34:36] Send prompt
+[22:34:42] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\0db1f00b-6f8a-4682-8045-8173c1f92587
+[22:36:55] Main turn: done
+[22:37:00] Send follow-up
+[22:37:45] Follow-up: done
+[22:37:45] Stats {"tools":{"skill":1,"xaml_get_status":3,"get_projects_in_solution":1,"xaml_capture_image":3,"xaml_get_visual_tree":1,"xaml_get_resource_dictionaries":1,"glob":1,"get_file":11,"xaml_get_element_styles":6,"xaml_get_element_properties":4,"xaml_find_resource":2,"rg":1,"multi_replace_string_in_file":2,"xaml_apply_hot_reload":2,"xaml_find_elements":1,"xaml_explain_property_value":1,"xaml_get_hot_reload_log":3,"task_complete":2},"failed":0,"images":3}
+[22:37:46] Debugger mode at end: 3 (1=design 2=break 3=run)
+[22:37:49] Finished

@@ -1,0 +1,114 @@
+diff --git a/src/VanishingSave/FooterSettings.cs b/src/VanishingSave/FooterSettings.cs
+deleted file mode 100644
+index 27522f0..0000000
+--- a/src/VanishingSave/FooterSettings.cs
++++ /dev/null
+@@ -1,10 +0,0 @@
+-namespace VanishingSave;
+-
+-public static class FooterSettings
+-{
+-    /// <summary>
+-    /// Compact footer for small screens: auto-save makes the Save column unnecessary.
+-    /// (Auto-save was cut from v2, but this switch stayed on.)
+-    /// </summary>
+-    public static bool UseCompactFooter { get; set; } = true;
+-}
+diff --git a/src/VanishingSave/MainWindow.xaml b/src/VanishingSave/MainWindow.xaml
+index bb8122a..13e1cf7 100644
+--- a/src/VanishingSave/MainWindow.xaml
++++ b/src/VanishingSave/MainWindow.xaml
+@@ -28,12 +28,6 @@
+             <Setter Property="MinWidth" Value="88" />
+             <Setter Property="Margin" Value="8,0,0,0" />
+             <Setter Property="Padding" Value="16,6" />
+-            <Style.Triggers>
+-                <!-- Fade out buttons that can't be used yet. -->
+-                <Trigger Property="IsEnabled" Value="False">
+-                    <Setter Property="Opacity" Value="0" />
+-                </Trigger>
+-            </Style.Triggers>
+         </Style>
+     </Window.Resources>
+ 
+@@ -102,30 +96,20 @@
+             <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="*" />
+                 <ColumnDefinition Width="Auto" />
+-                <ColumnDefinition x:Name="SaveColumn" Width="Auto" />
+             </Grid.ColumnDefinitions>
++            <Grid.RowDefinitions>
++                <RowDefinition Height="Auto" />
++                <RowDefinition Height="Auto" />
++            </Grid.RowDefinitions>
+ 
+             <TextBlock VerticalAlignment="Center"
+                        Foreground="#555B66"
+                        Text="Changes are saved to Contoso CRM." />
+ 
+-            <Button x:Name="CancelButton"
+-                    Grid.Column="1"
+-                    Command="{Binding CancelCommand}"
+-                    Content="Cancel"
+-                    Style="{StaticResource FooterButtonStyle}" />
+-
+-            <Button x:Name="SaveButton"
+-                    Grid.Column="2"
+-                    Command="{Binding SaveCommand}"
+-                    Content="Save"
+-                    IsDefault="True"
+-                    Style="{StaticResource FooterButtonStyle}"
+-                    Visibility="{Binding CanSave, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
+-
+             <!-- Shows "Offline - changes will sync later" when the connection drops. -->
+             <Border x:Name="SyncStatusHost"
+-                    Grid.Column="2"
++                    Grid.Column="0"
++                    Grid.Row="1"
+                     Panel.ZIndex="1"
+                     Background="White">
+                 <TextBlock x:Name="SyncStatusText"
+@@ -133,6 +117,20 @@
+                            Foreground="#B54708"
+                            Text="" />
+             </Border>
++
++            <StackPanel Grid.Column="1" Orientation="Horizontal">
++                <Button x:Name="CancelButton"
++                        Command="{Binding CancelCommand}"
++                        Content="Cancel"
++                        Style="{StaticResource FooterButtonStyle}" />
++
++                <Button x:Name="SaveButton"
++                        Command="{Binding SaveCommand}"
++                        Content="Save"
++                        IsDefault="True"
++                        Style="{StaticResource FooterButtonStyle}"
++                        Visibility="{Binding IsSaveAvailable, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
++            </StackPanel>
+         </Grid>
+     </Grid>
+ </Window>
+diff --git a/src/VanishingSave/MainWindow.xaml.cs b/src/VanishingSave/MainWindow.xaml.cs
+index 56bb50d..437001e 100644
+--- a/src/VanishingSave/MainWindow.xaml.cs
++++ b/src/VanishingSave/MainWindow.xaml.cs
+@@ -4,17 +4,5 @@ namespace VanishingSave;
+ 
+ public partial class MainWindow : Window
+ {
+-    public MainWindow()
+-    {
+-        this.InitializeComponent();
+-        this.Loaded += this.OnLoaded;
+-    }
+-
+-    private void OnLoaded(object sender, RoutedEventArgs e)
+-    {
+-        if (FooterSettings.UseCompactFooter)
+-        {
+-            this.SaveColumn.Width = new GridLength(0);
+-        }
+-    }
++    public MainWindow() => this.InitializeComponent();
+ }

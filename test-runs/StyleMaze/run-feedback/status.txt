@@ -1,0 +1,3 @@
+ M src/StyleMaze/MainWindow.xaml
+ M src/StyleMaze/Themes/Brand.xaml
+ M src/StyleMaze/Themes/LegacyReports.xaml

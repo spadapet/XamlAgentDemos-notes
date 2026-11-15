@@ -1,0 +1,10 @@
+[21:56:11] Stop + reset
+[21:56:15] Start A11ySweep
+[21:56:27] App pid 9808
+[21:56:35] Send prompt
+[21:56:48] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\e341cafc-7a70-4274-b24c-e21e19ada717
+[22:12:05] Main turn: stalled
+[22:12:10] Send follow-up
+[22:12:24] Follow-up ERROR Could not focus chat input
+[22:12:25] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_run_accessibility_check":1},"failed":0,"images":0}
+[22:12:28] Finished

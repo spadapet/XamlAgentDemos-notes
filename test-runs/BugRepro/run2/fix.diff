@@ -1,0 +1,35 @@
+diff --git a/src/BugRepro/MainWindow.xaml b/src/BugRepro/MainWindow.xaml
+index 502f272..c935335 100644
+--- a/src/BugRepro/MainWindow.xaml
++++ b/src/BugRepro/MainWindow.xaml
+@@ -32,7 +32,7 @@
+                  Margin="0,4,0,12"
+                  Padding="6,4"
+                  AutomationProperties.Name="Email"
+-                 Text="{Binding Email}" />
++                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+ 
+         <DockPanel Margin="0,8,0,0">
+             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+diff --git a/src/BugRepro/ProfileViewModel.cs b/src/BugRepro/ProfileViewModel.cs
+index 304313a..5a5fe8a 100644
+--- a/src/BugRepro/ProfileViewModel.cs
++++ b/src/BugRepro/ProfileViewModel.cs
+@@ -52,7 +52,9 @@ public sealed class ProfileViewModel : ObservableObject
+ 
+     private void MarkDirty()
+     {
+-        if (!this.isReverting)
++        if (!this.isReverting
++            || this.DisplayName != this.savedDisplayName
++            || this.Email != this.savedEmail)
+         {
+             this.IsDirty = true;
+         }
+@@ -73,5 +75,6 @@ public sealed class ProfileViewModel : ObservableObject
+         this.DisplayName = this.savedDisplayName;
+         this.Email = this.savedEmail;
+         this.IsDirty = false;
++        this.isReverting = false;
+     }
+ }

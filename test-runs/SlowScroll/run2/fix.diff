@@ -1,0 +1,119 @@
+diff --git a/src/SlowScroll/MainWindow.xaml b/src/SlowScroll/MainWindow.xaml
+index 8d63bd6..a05e0b8 100644
+--- a/src/SlowScroll/MainWindow.xaml
++++ b/src/SlowScroll/MainWindow.xaml
+@@ -23,59 +23,61 @@
+                        Text="Measuring..." />
+         </Border>
+ 
+-        <ScrollViewer x:Name="PageScroller" VerticalScrollBarVisibility="Auto">
+-            <StackPanel Margin="16">
+-                <TextBlock FontSize="22"
+-                           FontWeight="SemiBold"
+-                           Text="Service logs" />
+-                <TextBlock Margin="0,4,0,12"
+-                           Foreground="#6B7280"
+-                           Text="Last 24 hours, all services" />
++        <DockPanel Margin="16">
++            <TextBlock DockPanel.Dock="Top"
++                       FontSize="22"
++                       FontWeight="SemiBold"
++                       Text="Service logs" />
++            <TextBlock DockPanel.Dock="Top"
++                       Margin="0,4,0,12"
++                       Foreground="#6B7280"
++                       Text="Last 24 hours, all services" />
+ 
+-                <ListBox x:Name="LogList"
+-                         HorizontalContentAlignment="Stretch"
+-                         ItemsSource="{Binding Source={StaticResource GroupedEntries}}"
+-                         ScrollViewer.CanContentScroll="False">
+-                    <ListBox.GroupStyle>
+-                        <GroupStyle>
+-                            <GroupStyle.HeaderTemplate>
+-                                <DataTemplate>
+-                                    <TextBlock Margin="4,10,0,4"
+-                                               FontWeight="SemiBold"
+-                                               Text="{Binding Name}" />
+-                                </DataTemplate>
+-                            </GroupStyle.HeaderTemplate>
+-                        </GroupStyle>
+-                    </ListBox.GroupStyle>
+-                    <ListBox.ItemTemplate>
+-                        <DataTemplate>
+-                            <Grid>
+-                                <Grid.ColumnDefinitions>
+-                                    <ColumnDefinition Width="90" />
+-                                    <ColumnDefinition Width="70" />
+-                                    <ColumnDefinition Width="*" />
+-                                </Grid.ColumnDefinitions>
+-                                <TextBlock FontFamily="Consolas"
+-                                           Foreground="#6B7280"
+-                                           Text="{Binding Time, StringFormat=HH:mm:ss.fff}" />
+-                                <Border Grid.Column="1"
+-                                        Margin="0,1,8,1"
+-                                        Padding="6,0"
+-                                        HorizontalAlignment="Left"
+-                                        Background="{Binding LevelBrush}"
+-                                        CornerRadius="3">
+-                                    <TextBlock FontSize="11"
+-                                               Foreground="White"
+-                                               Text="{Binding Level}" />
+-                                </Border>
+-                                <TextBlock Grid.Column="2"
+-                                           Text="{Binding Message}"
+-                                           TextTrimming="CharacterEllipsis" />
+-                            </Grid>
+-                        </DataTemplate>
+-                    </ListBox.ItemTemplate>
+-                </ListBox>
+-            </StackPanel>
+-        </ScrollViewer>
++            <ListBox x:Name="LogList"
++                     HorizontalContentAlignment="Stretch"
++                     ItemsSource="{Binding Source={StaticResource GroupedEntries}}"
++                     ScrollViewer.CanContentScroll="True"
++                     VirtualizingPanel.IsVirtualizingWhenGrouping="True"
++                     VirtualizingPanel.ScrollUnit="Pixel">
++                <ListBox.GroupStyle>
++                    <GroupStyle>
++                        <GroupStyle.HeaderTemplate>
++                            <DataTemplate>
++                                <TextBlock Margin="4,10,0,4"
++                                           FontWeight="SemiBold"
++                                           Text="{Binding Name}" />
++                            </DataTemplate>
++                        </GroupStyle.HeaderTemplate>
++                    </GroupStyle>
++                </ListBox.GroupStyle>
++                <ListBox.ItemTemplate>
++                    <DataTemplate>
++                        <Grid>
++                            <Grid.ColumnDefinitions>
++                                <ColumnDefinition Width="90" />
++                                <ColumnDefinition Width="70" />
++                                <ColumnDefinition Width="*" />
++                            </Grid.ColumnDefinitions>
++                            <TextBlock FontFamily="Consolas"
++                                       Foreground="#6B7280"
++                                       Text="{Binding Time, StringFormat=HH:mm:ss.fff}" />
++                            <Border Grid.Column="1"
++                                    Margin="0,1,8,1"
++                                    Padding="6,0"
++                                    HorizontalAlignment="Left"
++                                    Background="{Binding LevelBrush}"
++                                    CornerRadius="3">
++                                <TextBlock FontSize="11"
++                                           Foreground="White"
++                                           Text="{Binding Level}" />
++                            </Border>
++                            <TextBlock Grid.Column="2"
++                                       Text="{Binding Message}"
++                                       TextTrimming="CharacterEllipsis" />
++                        </Grid>
++                    </DataTemplate>
++                </ListBox.ItemTemplate>
++            </ListBox>
++        </DockPanel>
+     </DockPanel>
+ </Window>

@@ -1,0 +1,60 @@
+diff --git a/src/VanishingSave/MainWindow.xaml b/src/VanishingSave/MainWindow.xaml
+index bb8122a..9861534 100644
+--- a/src/VanishingSave/MainWindow.xaml
++++ b/src/VanishingSave/MainWindow.xaml
+@@ -28,12 +28,6 @@
+             <Setter Property="MinWidth" Value="88" />
+             <Setter Property="Margin" Value="8,0,0,0" />
+             <Setter Property="Padding" Value="16,6" />
+-            <Style.Triggers>
+-                <!-- Fade out buttons that can't be used yet. -->
+-                <Trigger Property="IsEnabled" Value="False">
+-                    <Setter Property="Opacity" Value="0" />
+-                </Trigger>
+-            </Style.Triggers>
+         </Style>
+     </Window.Resources>
+ 
+@@ -104,6 +98,10 @@
+                 <ColumnDefinition Width="Auto" />
+                 <ColumnDefinition x:Name="SaveColumn" Width="Auto" />
+             </Grid.ColumnDefinitions>
++            <Grid.RowDefinitions>
++                <RowDefinition Height="Auto" />
++                <RowDefinition Height="Auto" />
++            </Grid.RowDefinitions>
+ 
+             <TextBlock VerticalAlignment="Center"
+                        Foreground="#555B66"
+@@ -121,13 +119,12 @@
+                     Content="Save"
+                     IsDefault="True"
+                     Style="{StaticResource FooterButtonStyle}"
+-                    Visibility="{Binding CanSave, Converter={StaticResource BoolToVisibility}, FallbackValue=Collapsed}" />
++                    Visibility="{Binding IsSaveAvailable, Converter={StaticResource BoolToVisibility}}" />
+ 
+             <!-- Shows "Offline - changes will sync later" when the connection drops. -->
+             <Border x:Name="SyncStatusHost"
+-                    Grid.Column="2"
+-                    Panel.ZIndex="1"
+-                    Background="White">
++                    Grid.Row="1"
++                    Grid.ColumnSpan="3">
+                 <TextBlock x:Name="SyncStatusText"
+                            VerticalAlignment="Center"
+                            Foreground="#B54708"
+diff --git a/src/VanishingSave/MainWindow.xaml.cs b/src/VanishingSave/MainWindow.xaml.cs
+index 56bb50d..ac479e7 100644
+--- a/src/VanishingSave/MainWindow.xaml.cs
++++ b/src/VanishingSave/MainWindow.xaml.cs
+@@ -12,9 +12,6 @@ public partial class MainWindow : Window
+ 
+     private void OnLoaded(object sender, RoutedEventArgs e)
+     {
+-        if (FooterSettings.UseCompactFooter)
+-        {
+-            this.SaveColumn.Width = new GridLength(0);
+-        }
++        this.SaveColumn.Width = GridLength.Auto;
+     }
+ }

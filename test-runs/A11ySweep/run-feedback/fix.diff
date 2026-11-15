@@ -1,0 +1,144 @@
+diff --git a/src/A11ySweep/MainWindow.xaml b/src/A11ySweep/MainWindow.xaml
+index 1674c74..18b3732 100644
+--- a/src/A11ySweep/MainWindow.xaml
++++ b/src/A11ySweep/MainWindow.xaml
+@@ -18,25 +18,44 @@
+                    Height="96"
+                    Margin="0,0,16,0"
+                    DockPanel.Dock="Left"
++                   AutomationProperties.Name="The XAML Show cover art"
+                    Source="{StaticResource CoverArt}" />
+-            <Border x:Name="SubscribeChip"
+-                    Padding="14,6"
+-                    VerticalAlignment="Center"
+-                    Background="#EFEAFE"
+-                    CornerRadius="14"
+-                    Cursor="Hand"
+-                    DockPanel.Dock="Right"
+-                    MouseLeftButtonUp="OnSubscribeClicked">
+-                <TextBlock x:Name="SubscribeText"
+-                           Foreground="#5B3FD9"
+-                           Text="Subscribe" />
+-            </Border>
++            <ToggleButton x:Name="SubscribeButton"
++                          Padding="14,6"
++                          VerticalAlignment="Center"
++                          Background="#EFEAFE"
++                          Foreground="#5B3FD9"
++                          BorderThickness="0"
++                          DockPanel.Dock="Right"
++                          IsChecked="{Binding IsSubscribed, Mode=TwoWay}"
++                          AutomationProperties.Name="Subscribe to The XAML Show">
++                <ToggleButton.Template>
++                    <ControlTemplate TargetType="ToggleButton">
++                        <Border Background="{TemplateBinding Background}" CornerRadius="14">
++                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
++                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
++                        </Border>
++                    </ControlTemplate>
++                </ToggleButton.Template>
++                <TextBlock x:Name="SubscribeText">
++                    <TextBlock.Style>
++                        <Style TargetType="TextBlock">
++                            <Setter Property="Text" Value="Subscribe" />
++                            <Style.Triggers>
++                                <DataTrigger Binding="{Binding IsSubscribed}" Value="True">
++                                    <Setter Property="Text" Value="Subscribed" />
++                                </DataTrigger>
++                            </Style.Triggers>
++                        </Style>
++                    </TextBlock.Style>
++                </TextBlock>
++            </ToggleButton>
+             <StackPanel VerticalAlignment="Center">
+                 <TextBlock FontSize="24"
+                            FontWeight="SemiBold"
+                            Text="The XAML Show" />
+                 <TextBlock x:Name="ShowByline"
+-                           Foreground="#C4C4C4"
++                           Foreground="#666666"
+                            Text="Weekly conversations about building great Windows apps" />
+             </StackPanel>
+         </DockPanel>
+@@ -49,23 +68,24 @@
+                 DockPanel.Dock="Bottom">
+             <DockPanel>
+                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+-                    <Button x:Name="BackButton" Command="{Binding BackCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="BackButton" Command="{Binding BackCommand}" Style="{StaticResource IconButtonStyle}" AutomationProperties.Name="Skip back 15 seconds">
+                         <Path Data="M12,4 L4,12 L12,20 M20,4 L12,12 L20,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="PlayButton" Command="{Binding PlayCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="PlayButton" Command="{Binding PlayCommand}" Style="{StaticResource IconButtonStyle}" AutomationProperties.Name="Play">
+                         <Path Data="M6,3 L20,12 L6,21 Z" Fill="#333" />
+                     </Button>
+-                    <Button x:Name="ForwardButton" Command="{Binding ForwardCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ForwardButton" Command="{Binding ForwardCommand}" Style="{StaticResource IconButtonStyle}" AutomationProperties.Name="Skip forward 30 seconds">
+                         <Path Data="M4,4 L12,12 L4,20 M12,4 L20,12 L12,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="ShuffleButton" Command="{Binding ShuffleCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ShuffleButton" Command="{Binding ShuffleCommand}" Style="{StaticResource IconButtonStyle}" AutomationProperties.Name="Shuffle">
+                         <Path Data="M3,7 H8 L16,17 H21 M3,17 H8 L16,7 H21" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+                     <ToggleButton x:Name="LikeButton"
+                                   Width="40"
+                                   Height="40"
+                                   Background="Transparent"
+-                                  BorderThickness="0">
++                                  BorderThickness="0"
++                                  AutomationProperties.Name="Like episode">
+                         <Path Data="M12,21 L4,13 A4.5,4.5 0 0 1 12,6 A4.5,4.5 0 0 1 20,13 Z" Stroke="#C0392B" StrokeThickness="2" />
+                     </ToggleButton>
+                 </StackPanel>
+@@ -74,10 +94,16 @@
+                         VerticalAlignment="Center"
+                         DockPanel.Dock="Right"
+                         Maximum="100"
+-                        Value="70" />
++                        Value="70"
++                        AutomationProperties.LabeledBy="{Binding ElementName=VolumeLabel}" />
++                <TextBlock x:Name="VolumeLabel"
++                           Margin="12,0,4,0"
++                           VerticalAlignment="Center"
++                           DockPanel.Dock="Right"
++                           Text="Volume" />
+                 <TextBlock Margin="12,0"
+                            VerticalAlignment="Center"
+-                           Foreground="#BDBDBD"
++                           Foreground="#666666"
+                            Text="{Binding Status}" />
+             </DockPanel>
+         </Border>
+@@ -86,18 +112,28 @@
+         <StackPanel Margin="0,0,0,8"
+                     DockPanel.Dock="Top"
+                     Orientation="Horizontal">
+-            <TextBlock Margin="0,0,8,0"
++            <TextBlock x:Name="SearchLabel"
++                       Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Text="Search" />
+-            <TextBox x:Name="SearchBox" Width="260" />
++            <TextBox x:Name="SearchBox"
++                     Width="260"
++                     AutomationProperties.LabeledBy="{Binding ElementName=SearchLabel}" />
+         </StackPanel>
+ 
+-        <ListBox x:Name="EpisodeList" ItemsSource="{Binding Episodes}">
++        <ListBox x:Name="EpisodeList"
++                 ItemsSource="{Binding Episodes}"
++                 AutomationProperties.Name="Episodes">
++            <ListBox.ItemContainerStyle>
++                <Style TargetType="ListBoxItem">
++                    <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
++                </Style>
++            </ListBox.ItemContainerStyle>
+             <ListBox.ItemTemplate>
+                 <DataTemplate>
+                     <StackPanel Margin="4,6">
+                         <TextBlock FontWeight="SemiBold" Text="{Binding Title}" />
+-                        <TextBlock Foreground="#C8C8C8">
++                        <TextBlock Foreground="#666666">
+                             <Run Text="{Binding Published}" />
+                             <Run Text=" · " />
+                             <Run Text="{Binding Duration}" />

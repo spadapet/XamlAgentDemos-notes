@@ -1,0 +1,14 @@
+[19:47:15] Stop + reset
+[19:47:18] Start VanishingSave
+[19:47:31] App pid 58524
+[19:47:35] Send prompt
+[19:47:40] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\cbfd1710-c98a-474a-aa79-af9a9f9a28a7
+[19:53:01] Main turn: quiet
+[19:53:06] Send follow-up
+[20:03:50] Main turn: quiet
+[20:03:55] Send follow-up
+[20:28:23] Main turn: idle
+[20:28:28] Send follow-up
+[20:29:00] Follow-up: done
+[20:29:01] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_find_elements":7,"xaml_capture_image":8,"xaml_get_visual_tree":2,"xaml_get_element_properties":7,"xaml_get_element_bounds":6,"get_file":6,"xaml_explain_property_value":2,"xaml_get_element_styles":1,"xaml_get_binding_failures":5,"rg":5,"powershell":3,"multi_replace_string_in_file":4,"xaml_clear_binding_failures":2,"xaml_apply_hot_reload":4,"remove_file":1,"xaml_get_hot_reload_status":1,"xaml_get_hot_reload_log":2,"xaml_set_element_property":4,"view":3,"task_complete":1},"failed":0,"images":6}
+[20:29:05] Finished

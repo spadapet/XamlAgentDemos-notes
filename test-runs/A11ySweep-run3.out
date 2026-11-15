@@ -1,0 +1,11 @@
+[07:46:40] Stop + reset
+[07:46:43] Start A11ySweep
+[07:46:54] App pid 45512
+[07:47:02] Send prompt
+[harness] re-showed hidden VS main window
+[07:47:19] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\6b8309a8-a164-4164-aee0-fd234411a168
+[07:48:28] Main turn: done
+[07:48:33] Send follow-up
+[07:49:02] Follow-up: done
+[07:49:03] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_run_accessibility_check":2,"view":1,"powershell":2,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_capture_image":1,"task_complete":2},"failed":0,"images":1}
+[07:49:07] Finished

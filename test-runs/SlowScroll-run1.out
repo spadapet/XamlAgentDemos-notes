@@ -1,0 +1,12 @@
+[10:47:26] Stop + reset
+[10:47:30] Start SlowScroll
+[10:47:57] App pid 6016
+[10:48:02] Send prompt
+[harness] re-showed hidden VS main window
+[10:48:10] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\89995457-8ca8-4df7-8151-565011f2b8a3
+[10:53:13] Main turn: done
+[10:53:18] Send follow-up
+[10:53:38] Follow-up: done
+[10:53:38] Stats {"tools":{"task":1,"get_projects_in_solution":2,"get_files_in_project":1,"get_file":10,"collect_trace_from_app":2,"get_open_perf_traces":1,"read_agent":2,"skill":1,"xaml_list_apps":1,"xaml_capture_image":3,"xaml_find_elements":4,"powershell":3,"view":1,"glob":1,"get_tests":1,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":2,"xaml_get_hot_reload_status":1,"write_agent":1,"xaml_get_binding_failures":1,"run_build":1,"run_command_in_terminal":6,"replace_string_in_file":1,"task_complete":2},"failed":2,"images":3}
+[10:53:39] Debugger mode at end: 3 (1=design 2=break 3=run)
+[10:53:42] Finished

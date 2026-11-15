@@ -1,0 +1,2 @@
+ M src/A11ySweep/MainWindow.xaml
+ M src/A11ySweep/MainWindow.xaml.cs

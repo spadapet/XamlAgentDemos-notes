@@ -1,0 +1,11 @@
+[21:22:58] Stop + reset
+[21:23:01] Start GhostClicks
+[21:23:16] App pid 59072
+[21:23:21] Send prompt
+[21:23:29] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\0b059a6c-6c1d-4bf8-ad2d-52ace650a5bc
+[21:24:50] Main turn: done
+[21:24:55] Send follow-up
+[21:25:36] Follow-up: done
+[21:25:36] Stats {"tools":{"skill":1,"xaml_get_status":1,"xaml_capture_image":2,"glob":1,"view":3,"xaml_find_elements":4,"xaml_get_element_bounds":1,"xaml_get_element_properties":1,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_explain_property_value":1,"task_complete":2},"failed":0,"images":1}
+[21:25:37] Debugger mode at end: 3 (1=design 2=break 3=run)
+[21:25:41] Finished

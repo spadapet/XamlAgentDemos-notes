@@ -1,0 +1,86 @@
+diff --git a/src/BindingStorm/MainWindow.xaml b/src/BindingStorm/MainWindow.xaml
+index 55b6283..d9e6ab3 100644
+--- a/src/BindingStorm/MainWindow.xaml
++++ b/src/BindingStorm/MainWindow.xaml
+@@ -33,7 +33,7 @@
+                                 </Grid.ColumnDefinitions>
+                                 <TextBlock Text="{Binding Id, StringFormat=#{0}}" />
+                                 <TextBlock Grid.Column="1" Text="{Binding CustomerName}" />
+-                                <TextBlock Grid.Column="2" Text="{Binding OrderTotal, StringFormat=C}" />
++                                <TextBlock Grid.Column="2" Text="{Binding Total, StringFormat=C}" />
+                                 <TextBlock Grid.Column="3" Text="{Binding Status}" />
+                             </Grid>
+                         </DataTemplate>
+@@ -52,15 +52,15 @@
+                              AutomationProperties.Name="Search customers" />
+                     <TextBlock Margin="12,0,0,0"
+                                VerticalAlignment="Center"
+-                               Text="{Binding Text, ElementName=searchBox, StringFormat=Searching for: {0}}" />
++                               Text="{Binding Text, ElementName=SearchBox, StringFormat=Searching for: {0}}" />
+                 </StackPanel>
+                 <ListBox x:Name="CustomersList" ItemsSource="{Binding Customers}">
+                     <ListBox.ItemTemplate>
+                         <DataTemplate>
+-                            <Border Padding="4" Background="{Binding AlternationBackground, RelativeSource={RelativeSource AncestorType=ListView}}">
++                            <Border Padding="4">
+                                 <StackPanel>
+                                     <TextBlock FontWeight="SemiBold" Text="{Binding Name}" />
+-                                    <TextBlock Foreground="#555" Text="{Binding Emial}" />
++                                    <TextBlock Foreground="#555" Text="{Binding Email}" />
+                                     <TextBlock Foreground="#555" Text="{Binding City}" />
+                                 </StackPanel>
+                             </Border>
+@@ -75,11 +75,19 @@
+                 <Border x:Name="HighPriorityBanner"
+                         Margin="0,0,0,12"
+                         Padding="8"
+-                        Background="#FFF4E5"
+-                        Visibility="{Binding HighPriorityCount}">
++                        Background="#FFF4E5">
++                    <Border.Style>
++                        <Style TargetType="Border">
++                            <Style.Triggers>
++                                <DataTrigger Binding="{Binding HighPriorityCount}" Value="0">
++                                    <Setter Property="Visibility" Value="Collapsed" />
++                                </DataTrigger>
++                            </Style.Triggers>
++                        </Style>
++                    </Border.Style>
+                     <TextBlock Text="{Binding HighPriorityCount, StringFormat={}{0} high-priority orders need attention}" />
+                 </Border>
+-                <TextBlock FontSize="16" Text="{Binding Summary.Revenue, StringFormat=Revenue: {0:C}}" />
++                <TextBlock FontSize="16" Text="{Binding Revenue, StringFormat=Revenue: {0:C}}" />
+                 <TextBlock FontSize="16" Text="{Binding OrderCount, StringFormat=Orders: {0}}" />
+                 <TextBlock FontSize="16" Text="{Binding TopCustomer, StringFormat=Top customer: {0}}" />
+             </StackPanel>
+@@ -93,12 +101,12 @@
+                           Margin="0,4,0,12"
+                           HorizontalAlignment="Left"
+                           AutomationProperties.Name="Region"
+-                          ItemsSource="{Binding Regions}"
++                          ItemsSource="{Binding AvailableRegions}"
+                           SelectedItem="{Binding SelectedRegion}" />
+                 <CheckBox x:Name="AutoRefreshCheckBox"
+                           Margin="0,0,0,12"
+                           Content="Refresh orders automatically"
+-                          IsChecked="{Binding AutoRefresh}" />
++                          IsChecked="{Binding AutoRefreshEnabled}" />
+                 <TextBlock Text="{Binding Version, StringFormat=Version {0}}" />
+             </StackPanel>
+         </TabItem>
+diff --git a/src/BindingStorm/Views/OrderDetailsWindow.xaml b/src/BindingStorm/Views/OrderDetailsWindow.xaml
+index e23c3cd..eca17d2 100644
+--- a/src/BindingStorm/Views/OrderDetailsWindow.xaml
++++ b/src/BindingStorm/Views/OrderDetailsWindow.xaml
+@@ -8,9 +8,9 @@
+     <StackPanel Margin="16">
+         <TextBlock FontSize="18"
+                    FontWeight="SemiBold"
+-                   Text="{Binding Order.Id, StringFormat=Order #{0}}" />
++                   Text="{Binding Id, StringFormat=Order #{0}}" />
+         <TextBlock Margin="0,8,0,0" Text="{Binding CustomerName}" />
+-        <TextBlock Text="{Binding ShippingAdress}" />
++        <TextBlock Text="{Binding ShippingAddress}" />
+         <TextBlock Margin="0,8,0,0" Text="{Binding Total, StringFormat=Total: {0:C}}" />
+         <TextBlock Text="{Binding Status, StringFormat=Status: {0}}" />
+         <Button x:Name="CloseButton"

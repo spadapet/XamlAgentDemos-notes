@@ -1,0 +1,12 @@
+[20:38:44] Stop + reset
+[20:38:48] Start BindingStorm
+[20:39:00] App pid 78180
+[20:39:07] Send prompt
+[20:39:21] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\80e69ee7-d77c-4328-b8c0-3fe85151bef3
+[20:44:20] Main turn: done
+[20:44:25] Send follow-up
+ERROR Exception calling "SendWait" with "1" argument(s): "The operation completed successfully." at Set-ChatText, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 39
+at Send-ChatPrompt, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 45
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 20
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2

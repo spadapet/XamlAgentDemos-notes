@@ -1,0 +1,11 @@
+[08:19:30] Stop + reset
+[08:19:38] Start CrispPixels
+[08:19:51] App pid 61140
+[08:20:00] Send prompt
+[harness] re-showed hidden VS main window
+[08:20:16] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\1735a6df-d5b4-420b-9b60-0729833fcee3
+[08:22:11] Main turn: done
+[08:22:16] Send follow-up
+[08:22:47] Follow-up: done
+[08:22:48] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_capture_image":4,"xaml_get_visual_tree":3,"get_projects_in_solution":1,"view":1,"get_file":5,"xaml_get_element_properties":5,"xaml_get_element_bounds":4,"powershell":2,"xaml_explain_property_value":5,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":2,"replace_string_in_file":1,"xaml_set_element_property":2,"task_complete":2},"failed":2,"images":3}
+[08:22:52] Finished

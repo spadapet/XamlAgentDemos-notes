@@ -1,0 +1,95 @@
+diff --git a/src/StyleMaze/DangerButton.cs b/src/StyleMaze/DangerButton.cs
+index 85ac6aa..7eda340 100644
+--- a/src/StyleMaze/DangerButton.cs
++++ b/src/StyleMaze/DangerButton.cs
+@@ -2,7 +2,7 @@ using System.Windows.Controls;
+ 
+ namespace StyleMaze;
+ 
+-/// <summary>A button for destructive actions. It should look like every other button, plus a red background.</summary>
++/// <summary>A button for destructive actions that shares the common button style.</summary>
+ public class DangerButton : Button
+ {
+ }
+diff --git a/src/StyleMaze/MainWindow.xaml b/src/StyleMaze/MainWindow.xaml
+index 8e39910..3dd826f 100644
+--- a/src/StyleMaze/MainWindow.xaml
++++ b/src/StyleMaze/MainWindow.xaml
+@@ -5,14 +5,9 @@
+         Title="Contoso Projects"
+         Width="720"
+         Height="560"
+-        Background="#F7F7FB">
+-    <Window.Resources>
+-        <Style TargetType="TextBlock">
+-            <Setter Property="Foreground" Value="#2B1F73" />
+-            <Setter Property="FontSize" Value="15" />
+-        </Style>
+-    </Window.Resources>
+-
++        Background="#F7F7FB"
++        Foreground="{DynamicResource BrandTextBrush}"
++        FontSize="15">
+     <DockPanel>
+         <ToolBar x:Name="MainToolBar" DockPanel.Dock="Top">
+             <Button x:Name="NewButton" Content="New project" />
+@@ -33,7 +28,6 @@
+                 <Button x:Name="UpgradeButton" Content="Upgrade plan" />
+                 <local:DangerButton x:Name="DeleteButton"
+                                     Margin="8,0,0,0"
+-                                    Background="#C62828"
+                                     Content="Delete project" />
+             </StackPanel>
+ 
+@@ -41,7 +35,7 @@
+                         Margin="0,0,0,24"
+                         Orientation="Horizontal">
+                 <StackPanel.Resources>
+-                    <Style TargetType="Button">
++                    <Style TargetType="Button" BasedOn="{StaticResource BrandButtonStyle}">
+                         <Setter Property="Margin" Value="0,0,8,0" />
+                     </Style>
+                 </StackPanel.Resources>
+diff --git a/src/StyleMaze/Themes/Brand.xaml b/src/StyleMaze/Themes/Brand.xaml
+index 123f650..db854ab 100644
+--- a/src/StyleMaze/Themes/Brand.xaml
++++ b/src/StyleMaze/Themes/Brand.xaml
+@@ -1,10 +1,11 @@
+ <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+-    <SolidColorBrush x:Key="AccentBrush" Color="#5B3FD9" />
+-    <SolidColorBrush x:Key="AccentHoverBrush" Color="#4A31BD" />
++                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
++                    xmlns:local="clr-namespace:StyleMaze">
++    <SolidColorBrush x:Key="BrandAccentBrush" Color="#5B3FD9" />
++    <SolidColorBrush x:Key="BrandAccentHoverBrush" Color="#4A31BD" />
+ 
+-    <Style TargetType="Button">
+-        <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
++    <Style x:Key="BrandButtonStyle" TargetType="Button">
++        <Setter Property="Background" Value="{DynamicResource BrandAccentBrush}" />
+         <Setter Property="Foreground" Value="White" />
+         <Setter Property="FontWeight" Value="SemiBold" />
+         <Setter Property="Padding" Value="14,7" />
+@@ -20,11 +21,20 @@
+                     </Border>
+                     <ControlTemplate.Triggers>
+                         <Trigger Property="IsMouseOver" Value="True">
+-                            <Setter TargetName="Chrome" Property="Background" Value="{DynamicResource AccentHoverBrush}" />
++                            <Setter TargetName="Chrome" Property="Background" Value="{DynamicResource BrandAccentHoverBrush}" />
+                         </Trigger>
+                     </ControlTemplate.Triggers>
+                 </ControlTemplate>
+             </Setter.Value>
+         </Setter>
+     </Style>
++
++    <Style TargetType="Button" BasedOn="{StaticResource BrandButtonStyle}" />
++    <Style x:Key="{x:Static ToolBar.ButtonStyleKey}"
++           TargetType="Button"
++           BasedOn="{StaticResource BrandButtonStyle}" />
++    <Style TargetType="{x:Type local:DangerButton}"
++           BasedOn="{StaticResource BrandButtonStyle}" />
++
++    <SolidColorBrush x:Key="BrandTextBrush" Color="#2B1F73" />
+ </ResourceDictionary>

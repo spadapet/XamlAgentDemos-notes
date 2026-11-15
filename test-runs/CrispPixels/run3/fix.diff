@@ -1,0 +1,222 @@
+diff --git a/src/CrispPixels/MainWindow.xaml b/src/CrispPixels/MainWindow.xaml
+index 9145be6..5c09410 100644
+--- a/src/CrispPixels/MainWindow.xaml
++++ b/src/CrispPixels/MainWindow.xaml
+@@ -5,111 +5,131 @@
+         Width="720"
+         Height="560"
+         Background="#F3F4F6"
++        UseLayoutRounding="True"
++        SnapsToDevicePixels="True"
+         TextOptions.TextFormattingMode="Display">
+-    <StackPanel Margin="12.5,10.5,12.5,0">
++    <StackPanel x:Name="InvoiceLayout" Margin="12,10,12,0">
+         <!-- Toolbar -->
+         <Border x:Name="Toolbar"
+-                Padding="8.5,6"
++                Padding="8,6"
+                 Background="White"
+                 BorderBrush="#D1D5DB"
+                 BorderThickness="1">
+             <StackPanel Orientation="Horizontal">
+-                <Image x:Name="SaveIcon"
+-                       Width="20"
+-                       Height="20"
+-                       Source="{Binding SaveIcon}"
+-                       Stretch="Fill" />
++                <Image x:Name="SaveIcon" Width="20" Height="20">
++                    <Image.Source>
++                        <DrawingImage>
++                            <DrawingImage.Drawing>
++                                <DrawingGroup>
++                                    <GeometryDrawing Brush="Transparent" Geometry="M 0,0 H 16 V 16 H 0 Z" />
++                                    <GeometryDrawing Brush="#2563EB" Geometry="M 1,1 H 15 V 15 H 1 Z" />
++                                    <GeometryDrawing Brush="White" Geometry="M 4,2 H 12 V 7 H 4 Z M 3,9 H 13 V 14 H 3 Z" />
++                                    <GeometryDrawing Brush="#2563EB" Geometry="M 9,3 H 11 V 6 H 9 Z" />
++                                </DrawingGroup>
++                            </DrawingImage.Drawing>
++                        </DrawingImage>
++                    </Image.Source>
++                </Image>
+                 <TextBlock Margin="6,2,16,0" Text="Save" />
+-                <Image x:Name="PrintIcon"
+-                       Width="20"
+-                       Height="20"
+-                       Source="{Binding PrintIcon}"
+-                       Stretch="Fill" />
++                <Image x:Name="PrintIcon" Width="20" Height="20">
++                    <Image.Source>
++                        <DrawingImage>
++                            <DrawingImage.Drawing>
++                                <DrawingGroup>
++                                    <GeometryDrawing Brush="Transparent" Geometry="M 0,0 H 16 V 16 H 0 Z" />
++                                    <GeometryDrawing Brush="#374151" Geometry="M 1,1 H 15 V 15 H 1 Z" />
++                                    <GeometryDrawing Brush="White" Geometry="M 4,2 H 12 V 7 H 4 Z M 3,9 H 13 V 14 H 3 Z" />
++                                </DrawingGroup>
++                            </DrawingImage.Drawing>
++                        </DrawingImage>
++                    </Image.Source>
++                </Image>
+                 <TextBlock Margin="6,2,0,0" Text="Print" />
+             </StackPanel>
+         </Border>
+ 
+         <!-- Invoice card -->
+-        <Border x:Name="InvoiceCard"
++        <Grid Margin="0,12,0,0">
++            <Border Background="White" CornerRadius="6">
++                <Border.Effect>
++                    <DropShadowEffect BlurRadius="12"
++                                      Opacity="0.15"
++                                      ShadowDepth="2" />
++                </Border.Effect>
++            </Border>
++            <Border x:Name="InvoiceCard"
++                    Padding="20"
++                    Background="White"
++                    CornerRadius="6">
++                <StackPanel>
++                    <TextBlock FontSize="20"
++                               FontWeight="SemiBold"
++                               Text="Invoice #INV-20481" />
++                    <TextBlock Foreground="#4B5563" Text="Fabrikam, Inc. - due December 1" />
++                    <Rectangle x:Name="CardDivider"
++                               Height="1"
++                               Margin="0,12"
++                               Fill="#9CA3AF" />
++                    <Grid x:Name="LineItems">
++                        <Grid.ColumnDefinitions>
++                            <ColumnDefinition Width="2*" />
++                            <ColumnDefinition Width="*" />
++                            <ColumnDefinition Width="*" />
++                        </Grid.ColumnDefinitions>
++                        <Grid.RowDefinitions>
++                            <RowDefinition />
++                            <RowDefinition />
++                            <RowDefinition />
++                        </Grid.RowDefinitions>
++                        <TextBlock Text="Design services (12 h)" />
++                        <TextBlock Grid.Column="1" Text="$1,440.00" />
++                        <Rectangle x:Name="ColumnRule"
++                                   Grid.RowSpan="3"
++                                   Grid.Column="2"
++                                   Width="1"
++                                   HorizontalAlignment="Left"
++                                   Fill="#9CA3AF" />
++                        <TextBlock Grid.Column="2"
++                                   Margin="8,0,0,0"
++                                   Text="Paid" />
++                        <TextBlock Grid.Row="1" Text="Hosting (Nov)" />
++                        <TextBlock Grid.Row="1"
++                                   Grid.Column="1"
++                                   Text="$89.00" />
++                        <TextBlock Grid.Row="1"
++                                   Grid.Column="2"
++                                   Margin="8,0,0,0"
++                                   Text="Due" />
++                        <TextBlock Grid.Row="2" Text="Support plan" />
++                        <TextBlock Grid.Row="2"
++                                   Grid.Column="1"
++                                   Text="$250.00" />
++                        <TextBlock Grid.Row="2"
++                                   Grid.Column="2"
++                                   Margin="8,0,0,0"
++                                   Text="Due" />
++                    </Grid>
++                </StackPanel>
++            </Border>
++        </Grid>
++
++        <!-- Totals -->
++        <Border x:Name="TotalsCard"
++                Width="475"
++                MaxWidth="{Binding ActualWidth, ElementName=InvoiceLayout}"
+                 Margin="0,12,0,0"
+-                Padding="20"
++                Padding="18"
++                HorizontalAlignment="Left"
+                 Background="White"
+-                CornerRadius="6">
+-            <Border.Effect>
+-                <DropShadowEffect BlurRadius="12"
+-                                  Opacity="0.15"
+-                                  ShadowDepth="2" />
+-            </Border.Effect>
++                BorderBrush="#D1D5DB"
++                BorderThickness="1">
+             <StackPanel>
++                <TextBlock FontSize="13.5" Text="Subtotal: $1,779.00" />
++                <TextBlock FontSize="13.5" Text="Tax (10.1%): $179.68" />
+                 <TextBlock FontSize="20"
+                            FontWeight="SemiBold"
+-                           Text="Invoice #INV-20481" />
+-                <TextBlock Foreground="#4B5563" Text="Fabrikam, Inc. - due December 1" />
+-                <Rectangle x:Name="CardDivider"
+-                           Height="1"
+-                           Margin="0,12"
+-                           Fill="#9CA3AF" />
+-                <Grid x:Name="LineItems">
+-                    <Grid.ColumnDefinitions>
+-                        <ColumnDefinition Width="2*" />
+-                        <ColumnDefinition Width="*" />
+-                        <ColumnDefinition Width="*" />
+-                    </Grid.ColumnDefinitions>
+-                    <Grid.RowDefinitions>
+-                        <RowDefinition />
+-                        <RowDefinition />
+-                        <RowDefinition />
+-                    </Grid.RowDefinitions>
+-                    <TextBlock Text="Design services (12 h)" />
+-                    <TextBlock Grid.Column="1" Text="$1,440.00" />
+-                    <Rectangle x:Name="ColumnRule"
+-                               Grid.RowSpan="3"
+-                               Grid.Column="2"
+-                               Width="1"
+-                               HorizontalAlignment="Left"
+-                               Fill="#9CA3AF" />
+-                    <TextBlock Grid.Column="2"
+-                               Margin="8,0,0,0"
+-                               Text="Paid" />
+-                    <TextBlock Grid.Row="1" Text="Hosting (Nov)" />
+-                    <TextBlock Grid.Row="1"
+-                               Grid.Column="1"
+-                               Text="$89.00" />
+-                    <TextBlock Grid.Row="1"
+-                               Grid.Column="2"
+-                               Margin="8,0,0,0"
+-                               Text="Due" />
+-                    <TextBlock Grid.Row="2" Text="Support plan" />
+-                    <TextBlock Grid.Row="2"
+-                               Grid.Column="1"
+-                               Text="$250.00" />
+-                    <TextBlock Grid.Row="2"
+-                               Grid.Column="2"
+-                               Margin="8,0,0,0"
+-                               Text="Due" />
+-                </Grid>
++                           Text="Total due: $1,958.68" />
+             </StackPanel>
+         </Border>
+-
+-        <!-- Totals: scaled to fit -->
+-        <Viewbox x:Name="TotalsViewbox"
+-                 Height="104"
+-                 Margin="0,12,0,0"
+-                 HorizontalAlignment="Left">
+-            <Border x:Name="TotalsCard"
+-                    Width="420"
+-                    Padding="16"
+-                    Background="White"
+-                    BorderBrush="#D1D5DB"
+-                    BorderThickness="1">
+-                <StackPanel>
+-                    <TextBlock Text="Subtotal: $1,779.00" />
+-                    <TextBlock Text="Tax (10.1%): $179.68" />
+-                    <TextBlock FontSize="18"
+-                               FontWeight="SemiBold"
+-                               Text="Total due: $1,958.68" />
+-                </StackPanel>
+-            </Border>
+-        </Viewbox>
+     </StackPanel>
+ </Window>

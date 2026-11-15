@@ -1,0 +1,10 @@
+[23:12:44] Stop + reset
+[23:12:47] Start PrecedenceWars
+[23:12:59] App pid 52504
+[23:13:07] Send prompt
+ERROR SendWait(^a) failed at Send-Keys, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 46
+at Set-ChatText, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 58
+at Send-ChatPrompt, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 65
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 15
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2

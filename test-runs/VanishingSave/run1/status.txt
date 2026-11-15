@@ -1,0 +1,3 @@
+ D src/VanishingSave/FooterSettings.cs
+ M src/VanishingSave/MainWindow.xaml
+ M src/VanishingSave/MainWindow.xaml.cs

@@ -1,0 +1,3 @@
+ M src/ThemeBreaker/App.xaml
+ M src/ThemeBreaker/MainWindow.xaml
+ M src/ThemeBreaker/Themes/Dark.xaml

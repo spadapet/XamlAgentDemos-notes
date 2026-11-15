@@ -1,0 +1,12 @@
+[12:16:46] Stop + reset
+[12:16:50] Start TemplateDetective
+[12:17:09] App pid 50388
+[12:17:14] Send prompt
+[harness] re-showed hidden VS main window
+[12:17:23] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\cea6ebfd-0dca-4dbe-9fa7-967b9596df9f
+[12:18:16] Main turn: done
+[12:18:21] Send follow-up
+[12:18:51] Follow-up: done
+[12:18:51] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_capture_image":2,"xaml_get_visual_tree":2,"xaml_get_binding_failures":2,"get_projects_in_solution":1,"get_file":4,"glob":1,"xaml_get_element_properties":2,"xaml_explain_property_value":1,"view":1,"powershell":2,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"task_complete":2},"failed":0,"images":2}
+[12:18:52] Debugger mode at end: 3 (1=design 2=break 3=run)
+[12:18:55] Finished

@@ -1,0 +1,2 @@
+ M src/BindingStorm/MainWindow.xaml
+ M src/BindingStorm/Views/OrderDetailsWindow.xaml

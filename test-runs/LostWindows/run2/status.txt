@@ -1,0 +1,3 @@
+ M src/LostWindows/InspectorWindow.xaml
+ M src/LostWindows/MainWindow.xaml.cs
+ M src/LostWindows/WindowLayout.cs

@@ -1,0 +1,238 @@
+diff --git a/src/LostWindows/InspectorWindow.xaml b/src/LostWindows/InspectorWindow.xaml
+index f3b0c37..40ab66f 100644
+--- a/src/LostWindows/InspectorWindow.xaml
++++ b/src/LostWindows/InspectorWindow.xaml
+@@ -2,16 +2,33 @@
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Title="Inspector"
++        MinWidth="280"
++        MinHeight="160"
+         SizeToContent="WidthAndHeight"
++        WindowStartupLocation="CenterOwner"
+         WindowStyle="ToolWindow">
+     <Window.Resources>
+         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+     </Window.Resources>
+-    <StackPanel x:Name="InspectorContent"
+-                Margin="12"
+-                Visibility="{Binding HasSelection, Converter={StaticResource BoolToVisibility}}">
+-        <TextBlock FontWeight="SemiBold" Text="Selected note" />
+-        <TextBlock Text="{Binding SelectedTitle}" />
+-        <TextBlock Foreground="#6B7280" Text="{Binding WordCount, StringFormat='{}{0} words'}" />
+-    </StackPanel>
++    <Grid Margin="12">
++        <TextBlock Text="Select a note to inspect its details."
++                   TextWrapping="Wrap">
++            <TextBlock.Style>
++                <Style TargetType="TextBlock">
++                    <Setter Property="Visibility" Value="Visible" />
++                    <Style.Triggers>
++                        <DataTrigger Binding="{Binding HasSelection}" Value="True">
++                            <Setter Property="Visibility" Value="Collapsed" />
++                        </DataTrigger>
++                    </Style.Triggers>
++                </Style>
++            </TextBlock.Style>
++        </TextBlock>
++        <StackPanel x:Name="InspectorContent"
++                    Visibility="{Binding HasSelection, Converter={StaticResource BoolToVisibility}}">
++            <TextBlock FontWeight="SemiBold" Text="Selected note" />
++            <TextBlock Text="{Binding SelectedTitle}" />
++            <TextBlock Foreground="#6B7280" Text="{Binding WordCount, StringFormat='{}{0} words'}" />
++        </StackPanel>
++    </Grid>
+ </Window>
+diff --git a/src/LostWindows/MainWindow.xaml.cs b/src/LostWindows/MainWindow.xaml.cs
+index 29c6467..36b0ba2 100644
+--- a/src/LostWindows/MainWindow.xaml.cs
++++ b/src/LostWindows/MainWindow.xaml.cs
+@@ -16,30 +16,42 @@ public partial class MainWindow : Window
+     private void OnSettingsClick(object sender, RoutedEventArgs e)
+     {
+         this.settingsWindow ??= Create<SettingsWindow>("settings");
+-        this.settingsWindow.Show();
+-        this.settingsWindow.Activate();
++        ShowToolWindow(this.settingsWindow);
+         this.StatusText.Text = "Opened Settings.";
+     }
+ 
+     private void OnNotificationsClick(object sender, RoutedEventArgs e)
+     {
+         this.notificationsWindow ??= Create<NotificationsWindow>("notifications");
+-        this.notificationsWindow.Show();
++        ShowToolWindow(this.notificationsWindow);
+         this.StatusText.Text = "Opened Notifications.";
+     }
+ 
+     private void OnInspectorClick(object sender, RoutedEventArgs e)
+     {
+         this.inspectorWindow ??= Create<InspectorWindow>("inspector");
+-        this.inspectorWindow.Show();
++        ShowToolWindow(this.inspectorWindow);
+         this.StatusText.Text = "Opened Inspector.";
+     }
+ 
++    private static void ShowToolWindow(Window window)
++    {
++        window.Show();
++        WindowLayout.EnsureVisible(window);
++        window.Activate();
++    }
++
+     private T Create<T>(string layoutKey)
+         where T : Window, new()
+     {
+         var window = new T { Owner = this };
+         WindowLayout.Restore(window, layoutKey);
++        window.Closed += (_, _) =>
++        {
++            if (ReferenceEquals(this.settingsWindow, window)) this.settingsWindow = null;
++            if (ReferenceEquals(this.notificationsWindow, window)) this.notificationsWindow = null;
++            if (ReferenceEquals(this.inspectorWindow, window)) this.inspectorWindow = null;
++        };
+         return window;
+     }
+ }
+diff --git a/src/LostWindows/WindowLayout.cs b/src/LostWindows/WindowLayout.cs
+index ee19ddf..a89fb2e 100644
+--- a/src/LostWindows/WindowLayout.cs
++++ b/src/LostWindows/WindowLayout.cs
+@@ -1,10 +1,14 @@
++using System.ComponentModel;
++using System.Diagnostics;
+ using System.IO;
++using System.Runtime.InteropServices;
+ using System.Text.Json;
+ using System.Windows;
++using System.Windows.Interop;
+ 
+ namespace LostWindows;
+ 
+-/// <summary>Restores tool-window placement saved by the previous session (layout.json next to the app).</summary>
++/// <summary>Restores saved placement; callers must use EnsureVisible after every Show to recover inaccessible windows.</summary>
+ public static class WindowLayout
+ {
+     private static readonly Dictionary<string, Placement> Placements = Load();
+@@ -16,16 +20,64 @@ public static class WindowLayout
+             return;
+         }
+ 
++        if (placement is null || !double.IsFinite(placement.Left) || !double.IsFinite(placement.Top)
++            || !double.IsFinite(placement.Width) || !double.IsFinite(placement.Height)
++            || placement.Width <= 0 || placement.Height <= 0
++            || !Enum.TryParse(placement.State, out WindowState state) || !Enum.IsDefined(state))
++        {
++            Trace.TraceWarning("Ignoring invalid window placement for '{0}'.", key);
++            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
++            return;
++        }
++
+         window.WindowStartupLocation = WindowStartupLocation.Manual;
+         window.Left = placement.Left;
+         window.Top = placement.Top;
+-        if (placement.Width > 0 && placement.Height > 0)
++        window.Width = Math.Clamp(placement.Width, window.MinWidth, window.MaxWidth);
++        window.Height = Math.Clamp(placement.Height, window.MinHeight, window.MaxHeight);
++        window.WindowState = state == WindowState.Minimized ? WindowState.Normal : state;
++    }
++
++    public static void EnsureVisible(Window window)
++    {
++        if (window.WindowState == WindowState.Minimized)
++        {
++            window.WindowState = WindowState.Normal;
++        }
++
++        if (window.WindowState == WindowState.Maximized)
++        {
++            return;
++        }
++
++        window.UpdateLayout();
++        IntPtr handle = new WindowInteropHelper(window).Handle;
++        if (!GetWindowRect(handle, out NativeRect bounds))
++        {
++            throw new Win32Exception(Marshal.GetLastWin32Error());
++        }
++
++        var monitor = new MonitorInfo { Size = Marshal.SizeOf<MonitorInfo>() };
++        if (!GetMonitorInfo(MonitorFromWindow(handle, 2), ref monitor))
+         {
+-            window.Width = placement.Width;
+-            window.Height = placement.Height;
++            throw new Win32Exception(Marshal.GetLastWin32Error());
+         }
+ 
+-        window.WindowState = Enum.Parse<WindowState>(placement.State);
++        // Use physical pixels from the actual HWND, not WPF DIPs, for mixed-DPI monitors and taskbars.
++        NativeRect work = monitor.Work;
++        int width = Math.Min(bounds.Right - bounds.Left, work.Right - work.Left);
++        int height = Math.Min(bounds.Bottom - bounds.Top, work.Bottom - work.Top);
++        int left = Math.Clamp(bounds.Left, work.Left, work.Right - width);
++        int top = Math.Clamp(bounds.Top, work.Top, work.Bottom - height);
++        if (left != bounds.Left || top != bounds.Top
++            || width != bounds.Right - bounds.Left || height != bounds.Bottom - bounds.Top)
++        {
++            Trace.TraceWarning("Recovering inaccessible placement for '{0}'.", window.Title);
++            if (!SetWindowPos(handle, IntPtr.Zero, left, top, width, height, 0x0014))
++            {
++                throw new Win32Exception(Marshal.GetLastWin32Error());
++            }
++        }
+     }
+ 
+     private static Dictionary<string, Placement> Load()
+@@ -36,8 +88,50 @@ public static class WindowLayout
+             return new();
+         }
+ 
+-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+-        return JsonSerializer.Deserialize<Dictionary<string, Placement>>(File.ReadAllText(path), options) ?? new();
++        try
++        {
++            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
++            return JsonSerializer.Deserialize<Dictionary<string, Placement>>(File.ReadAllText(path), options)
++                ?? throw new JsonException("Window layout must contain an object.");
++        }
++        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or JsonException)
++        {
++            Trace.TraceWarning("Cannot restore window layout '{0}': {1}", path, ex.Message);
++            return new();
++        }
++    }
++
++    [DllImport("user32.dll", SetLastError = true)]
++    [return: MarshalAs(UnmanagedType.Bool)]
++    private static extern bool GetWindowRect(IntPtr window, out NativeRect rect);
++
++    [DllImport("user32.dll")]
++    private static extern IntPtr MonitorFromWindow(IntPtr window, uint flags);
++
++    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
++    [return: MarshalAs(UnmanagedType.Bool)]
++    private static extern bool GetMonitorInfo(IntPtr monitor, ref MonitorInfo info);
++
++    [DllImport("user32.dll", SetLastError = true)]
++    [return: MarshalAs(UnmanagedType.Bool)]
++    private static extern bool SetWindowPos(IntPtr window, IntPtr insertAfter, int x, int y, int width, int height, uint flags);
++
++    [StructLayout(LayoutKind.Sequential)]
++    private struct NativeRect
++    {
++        public int Left;
++        public int Top;
++        public int Right;
++        public int Bottom;
++    }
++
++    [StructLayout(LayoutKind.Sequential)]
++    private struct MonitorInfo
++    {
++        public int Size;
++        public NativeRect Monitor;
++        public NativeRect Work;
++        public uint Flags;
+     }
+ 
+     private sealed record Placement(double Left, double Top, double Width, double Height, string State);

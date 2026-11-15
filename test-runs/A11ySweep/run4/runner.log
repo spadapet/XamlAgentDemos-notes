@@ -1,0 +1,10 @@
+[07:55:03] Stop + reset
+[07:55:07] Start A11ySweep
+[07:55:25] App pid 66848
+[07:55:33] Send prompt
+[07:55:49] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\8538386e-cbb5-4982-9f74-c479a3ebb7d9
+[07:59:18] Main turn: done
+[07:59:23] Send follow-up
+[07:59:54] Follow-up: done
+[07:59:55] Stats {"tools":{"skill":1,"xaml_list_apps":1,"xaml_run_accessibility_check":4,"get_file":5,"xaml_capture_image":5,"xaml_get_visual_tree":1,"view":1,"multi_replace_string_in_file":2,"xaml_apply_hot_reload":2,"xaml_clear_binding_failures":2,"xaml_get_binding_failures":2,"replace_string_in_file":1,"xaml_find_elements":1,"powershell":2,"xaml_interact":3,"xaml_get_element_properties":1,"task_complete":2},"failed":1,"images":4}
+[07:59:58] Finished

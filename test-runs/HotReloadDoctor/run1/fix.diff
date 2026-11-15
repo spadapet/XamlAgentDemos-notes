@@ -1,0 +1,34 @@
+diff --git a/src/HotReloadDoctor/MainWindow.xaml b/src/HotReloadDoctor/MainWindow.xaml
+index 8f6f98a..8c7d8cf 100644
+--- a/src/HotReloadDoctor/MainWindow.xaml
++++ b/src/HotReloadDoctor/MainWindow.xaml
+@@ -13,7 +13,7 @@
+                     Background="{DynamicResource CardBackground}"
+                     CornerRadius="6">
+                 <StackPanel>
+-                    <TextBlock FontWeight="SemiBold" Text="{Binding Title}" />
++                    <TextBlock FontWeight="Bold" Text="{Binding Title}" />
+                     <TextBlock Margin="0,4,0,0"
+                                Foreground="#4B5563"
+                                Text="{Binding Body}"
+@@ -34,7 +34,7 @@
+         <TextBlock x:Name="WelcomeTitle"
+                    FontSize="26"
+                    FontWeight="SemiBold"
+-                   Foreground="#1F2937"
++                   Foreground="DarkGreen"
+                    Text="Welcome to Contoso" />
+         <TextBlock Margin="0,4,0,20"
+                    Foreground="#4B5563"
+diff --git a/src/HotReloadDoctor/Skins/Skin.xaml b/src/HotReloadDoctor/Skins/Skin.xaml
+index 8d33670..4cd8266 100644
+--- a/src/HotReloadDoctor/Skins/Skin.xaml
++++ b/src/HotReloadDoctor/Skins/Skin.xaml
+@@ -1,6 +1,6 @@
+ <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+-    <SolidColorBrush x:Key="PageBackground" Color="#F5F3FF" />
++    <SolidColorBrush x:Key="PageBackground" Color="#FFF7ED" />
+     <SolidColorBrush x:Key="CardBackground" Color="White" />
+ 
+     <Style x:Key="PrimaryButtonStyle" TargetType="Button">

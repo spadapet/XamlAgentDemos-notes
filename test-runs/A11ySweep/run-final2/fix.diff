@@ -1,0 +1,165 @@
+diff --git a/src/A11ySweep/MainWindow.xaml b/src/A11ySweep/MainWindow.xaml
+index 1674c74..67749c4 100644
+--- a/src/A11ySweep/MainWindow.xaml
++++ b/src/A11ySweep/MainWindow.xaml
+@@ -18,25 +18,47 @@
+                    Height="96"
+                    Margin="0,0,16,0"
+                    DockPanel.Dock="Left"
++                   AutomationProperties.Name="The XAML Show cover art"
+                    Source="{StaticResource CoverArt}" />
+-            <Border x:Name="SubscribeChip"
+-                    Padding="14,6"
+-                    VerticalAlignment="Center"
+-                    Background="#EFEAFE"
+-                    CornerRadius="14"
+-                    Cursor="Hand"
+-                    DockPanel.Dock="Right"
+-                    MouseLeftButtonUp="OnSubscribeClicked">
+-                <TextBlock x:Name="SubscribeText"
+-                           Foreground="#5B3FD9"
+-                           Text="Subscribe" />
+-            </Border>
++            <ToggleButton x:Name="SubscribeChip"
++                          AutomationProperties.Name="Subscribe to or unsubscribe from this show"
++                          IsChecked="{Binding IsSubscribed, Mode=TwoWay}"
++                          Padding="14,6"
++                          VerticalAlignment="Center"
++                          Background="#EFEAFE"
++                          Foreground="#5B3FD9"
++                          BorderThickness="0"
++                          DockPanel.Dock="Right">
++                <ToggleButton.Template>
++                    <ControlTemplate TargetType="ToggleButton">
++                        <Border x:Name="ChipBorder" Background="{TemplateBinding Background}" CornerRadius="14">
++                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
++                        </Border>
++                        <ControlTemplate.Triggers>
++                            <Trigger Property="IsKeyboardFocused" Value="True">
++                                <Setter TargetName="ChipBorder" Property="BorderBrush" Value="#333333" />
++                                <Setter TargetName="ChipBorder" Property="BorderThickness" Value="2" />
++                            </Trigger>
++                        </ControlTemplate.Triggers>
++                    </ControlTemplate>
++                </ToggleButton.Template>
++                <ToggleButton.Style>
++                    <Style TargetType="ToggleButton">
++                        <Setter Property="Content" Value="Subscribe" />
++                        <Style.Triggers>
++                            <Trigger Property="IsChecked" Value="True">
++                                <Setter Property="Content" Value="Subscribed" />
++                            </Trigger>
++                        </Style.Triggers>
++                    </Style>
++                </ToggleButton.Style>
++            </ToggleButton>
+             <StackPanel VerticalAlignment="Center">
+                 <TextBlock FontSize="24"
+                            FontWeight="SemiBold"
+                            Text="The XAML Show" />
+                 <TextBlock x:Name="ShowByline"
+-                           Foreground="#C4C4C4"
++                           Foreground="#595959"
+                            Text="Weekly conversations about building great Windows apps" />
+             </StackPanel>
+         </DockPanel>
+@@ -49,19 +71,20 @@
+                 DockPanel.Dock="Bottom">
+             <DockPanel>
+                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+-                    <Button x:Name="BackButton" Command="{Binding BackCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="BackButton" AutomationProperties.Name="Skip back" Command="{Binding BackCommand}" Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M12,4 L4,12 L12,20 M20,4 L12,12 L20,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="PlayButton" Command="{Binding PlayCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="PlayButton" AutomationProperties.Name="Play or pause" Command="{Binding PlayCommand}" Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M6,3 L20,12 L6,21 Z" Fill="#333" />
+                     </Button>
+-                    <Button x:Name="ForwardButton" Command="{Binding ForwardCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ForwardButton" AutomationProperties.Name="Skip forward" Command="{Binding ForwardCommand}" Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M4,4 L12,12 L4,20 M12,4 L20,12 L12,20" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+-                    <Button x:Name="ShuffleButton" Command="{Binding ShuffleCommand}" Style="{StaticResource IconButtonStyle}">
++                    <Button x:Name="ShuffleButton" AutomationProperties.Name="Shuffle episodes" Command="{Binding ShuffleCommand}" Style="{StaticResource IconButtonStyle}">
+                         <Path Data="M3,7 H8 L16,17 H21 M3,17 H8 L16,7 H21" Stroke="#333" StrokeThickness="2" />
+                     </Button>
+                     <ToggleButton x:Name="LikeButton"
++                                  AutomationProperties.Name="Like episode"
+                                   Width="40"
+                                   Height="40"
+                                   Background="Transparent"
+@@ -70,6 +93,7 @@
+                     </ToggleButton>
+                 </StackPanel>
+                 <Slider x:Name="VolumeSlider"
++                        AutomationProperties.Name="Volume"
+                         Width="140"
+                         VerticalAlignment="Center"
+                         DockPanel.Dock="Right"
+@@ -77,7 +101,7 @@
+                         Value="70" />
+                 <TextBlock Margin="12,0"
+                            VerticalAlignment="Center"
+-                           Foreground="#BDBDBD"
++                           Foreground="#595959"
+                            Text="{Binding Status}" />
+             </DockPanel>
+         </Border>
+@@ -86,18 +110,28 @@
+         <StackPanel Margin="0,0,0,8"
+                     DockPanel.Dock="Top"
+                     Orientation="Horizontal">
+-            <TextBlock Margin="0,0,8,0"
++            <TextBlock x:Name="SearchLabel"
++                       Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Text="Search" />
+-            <TextBox x:Name="SearchBox" Width="260" />
++            <TextBox x:Name="SearchBox"
++                     AutomationProperties.LabeledBy="{Binding ElementName=SearchLabel}"
++                     Width="260" />
+         </StackPanel>
+ 
+-        <ListBox x:Name="EpisodeList" ItemsSource="{Binding Episodes}">
++        <ListBox x:Name="EpisodeList"
++                 AutomationProperties.Name="Episodes"
++                 ItemsSource="{Binding Episodes}">
++            <ListBox.ItemContainerStyle>
++                <Style TargetType="ListBoxItem">
++                    <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
++                </Style>
++            </ListBox.ItemContainerStyle>
+             <ListBox.ItemTemplate>
+                 <DataTemplate>
+                     <StackPanel Margin="4,6">
+                         <TextBlock FontWeight="SemiBold" Text="{Binding Title}" />
+-                        <TextBlock Foreground="#C8C8C8">
++                        <TextBlock Foreground="#595959">
+                             <Run Text="{Binding Published}" />
+                             <Run Text=" · " />
+                             <Run Text="{Binding Duration}" />
+diff --git a/src/A11ySweep/MainWindow.xaml.cs b/src/A11ySweep/MainWindow.xaml.cs
+index da28625..cfa824f 100644
+--- a/src/A11ySweep/MainWindow.xaml.cs
++++ b/src/A11ySweep/MainWindow.xaml.cs
+@@ -11,9 +11,19 @@ public partial class MainWindow : Window
+     }
+ 
+     private void OnSubscribeClicked(object sender, MouseButtonEventArgs e)
++    {
++        this.ToggleSubscription();
++    }
++
++    private void OnSubscribeButtonClicked(object sender, RoutedEventArgs e)
++    {
++        this.ToggleSubscription();
++    }
++
++    private void ToggleSubscription()
+     {
+         var viewModel = (PlayerViewModel)this.DataContext;
+         viewModel.IsSubscribed = !viewModel.IsSubscribed;
+-        this.SubscribeText.Text = viewModel.IsSubscribed ? "Subscribed" : "Subscribe";
++        this.SubscribeChip.Content = viewModel.IsSubscribed ? "Subscribed" : "Subscribe";
+     }
+ }

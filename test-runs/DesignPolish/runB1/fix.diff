@@ -1,0 +1,32 @@
+diff --git a/src/DesignPolish/MainWindow.xaml b/src/DesignPolish/MainWindow.xaml
+index dad2c15..70cf846 100644
+--- a/src/DesignPolish/MainWindow.xaml
++++ b/src/DesignPolish/MainWindow.xaml
+@@ -11,23 +11,23 @@
+             <Border x:Name="Hero"
+                     Padding="40,36"
+                     Background="#5B3FD9">
+-                <StackPanel x:Name="HeroContent" HorizontalAlignment="Center">
++                <StackPanel x:Name="HeroContent" HorizontalAlignment="Left">
+                     <TextBlock x:Name="HeroTitle"
+-                               HorizontalAlignment="Center"
++                               HorizontalAlignment="Left"
+                                FontSize="30"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="Plans that grow with your team" />
+                     <TextBlock x:Name="HeroSubtitle"
+                                Margin="0,9,0,0"
+-                               HorizontalAlignment="Center"
++                               HorizontalAlignment="Left"
+                                FontSize="15"
+                                Foreground="#E0DBFF"
+                                Text="Start free. Upgrade when you need more projects, storage and support." />
+                     <Button x:Name="HeroCta"
+                             Margin="0,18,0,0"
+                             Padding="18,7"
+-                            HorizontalAlignment="Center"
++                            HorizontalAlignment="Left"
+                             Background="White"
+                             BorderThickness="0"
+                             Content="Start free trial"

@@ -1,0 +1,58 @@
+diff --git a/src/GhostClicks/MainWindow.xaml b/src/GhostClicks/MainWindow.xaml
+index 831bf9a..b6b85c7 100644
+--- a/src/GhostClicks/MainWindow.xaml
++++ b/src/GhostClicks/MainWindow.xaml
+@@ -16,7 +16,6 @@
+ 
+         <!-- Decorative header; clicks pass through to the window so it can be dragged. -->
+         <Border x:Name="HeaderBand"
+-                Padding="20,14"
+                 IsHitTestVisible="False">
+             <Border.Background>
+                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+@@ -24,7 +23,8 @@
+                     <GradientStop Offset="1" Color="#7B5CF0" />
+                 </LinearGradientBrush>
+             </Border.Background>
+-            <DockPanel>
++        </Border>
++        <DockPanel x:Name="HeaderContent" Margin="20,14">
+                 <Button x:Name="SettingsButton"
+                         Padding="10,4"
+                         Click="OnActionClick"
+@@ -36,8 +36,7 @@
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            Text="Inbox" />
+-            </DockPanel>
+-        </Border>
++        </DockPanel>
+ 
+         <ItemsControl x:Name="MessageList"
+                       Grid.Row="1"
+@@ -48,6 +47,7 @@
+                     <Border x:Name="MessageRow"
+                             Margin="0,0,0,4"
+                             Padding="12,10"
++                            Background="Transparent"
+                             BorderBrush="#E6E8EE"
+                             BorderThickness="0,0,0,1"
+                             Cursor="Hand"
+@@ -89,6 +89,7 @@
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        Foreground="#6B7280"
++                       IsHitTestVisible="False"
+                        Text="Page 1 of 12" />
+         </Grid>
+ 
+@@ -118,7 +119,8 @@
+         <!-- Toast notifications appear above the action bar and fade out. -->
+         <Border x:Name="ToastHost"
+                 Grid.Row="3"
+-                Background="Transparent">
++                Background="Transparent"
++                IsHitTestVisible="False">
+             <Border x:Name="Toast"
+                     Margin="0,0,12,12"
+                     Padding="14,8"

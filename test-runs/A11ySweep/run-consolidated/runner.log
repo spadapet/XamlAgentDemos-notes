@@ -1,0 +1,18 @@
+[21:43:19] Stop + reset
+ERROR You cannot call a method on a null-valued expression. at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at Invoke-Dte, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 88
+at Stop-Demo, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Harness.psm1: line 104
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Demo.ps1: line 10
+at <ScriptBlock>, C:\Users\peterspa\.copilot\session-state\3815da22-ae30-4db6-bb02-0ae296cab09b\files\harness\Run-Batch.ps1: line 3
+at <ScriptBlock>, <No file>: line 2
+[21:57:16] Stop + reset
+[21:57:19] Start A11ySweep
+[21:57:32] App pid 45652
+[21:57:37] Send prompt
+[21:57:42] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\2085d036-2ffc-43e6-a348-1b8e5491d661
+[22:02:20] Main turn: done
+[22:02:25] Send follow-up
+[22:03:26] Follow-up: done
+[22:03:26] Stats {"tools":{"skill":1,"xaml_get_status":3,"xaml_run_accessibility_check":5,"view":4,"xaml_capture_image":6,"powershell":1,"rg":1,"get_file":5,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":3,"xaml_get_binding_failures":2,"xaml_get_hot_reload_log":1,"xaml_find_elements":5,"xaml_interact":3,"xaml_get_element_properties":7,"xaml_hit_test":2,"replace_string_in_file":2,"xaml_set_element_property":1,"task_complete":2},"failed":0,"images":3}
+[22:03:27] Debugger mode at end: 3 (1=design 2=break 3=run)
+[22:03:30] Finished

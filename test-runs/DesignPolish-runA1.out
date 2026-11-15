@@ -1,0 +1,11 @@
+[08:35:11] Stop + reset
+[08:35:15] Start DesignPolish
+[08:35:28] App pid 76436
+[08:35:38] Send prompt
+[harness] re-showed hidden VS main window
+[08:35:52] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\27fa3fd1-c758-4102-ac6a-3309ac415390
+[08:38:11] Main turn: done
+[08:38:16] Send follow-up
+[08:38:47] Follow-up: done
+[08:38:47] Stats {"tools":{"skill":1,"xaml_list_apps":1,"get_projects_in_solution":1,"glob":1,"view":3,"xaml_capture_image":2,"xaml_get_visual_tree":3,"xaml_get_resource_dictionaries":1,"powershell":3,"get_file":6,"replace_string_in_file":1,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_get_hot_reload_status":1,"xaml_get_binding_failures":1,"xaml_find_elements":1,"xaml_find_resource":1,"xaml_get_element_properties":5,"xaml_get_hot_reload_log":1,"task_complete":2},"failed":0,"images":2}
+[08:38:51] Finished

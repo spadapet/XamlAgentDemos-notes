@@ -1,0 +1,110 @@
+diff --git a/src/StyleMaze/MainWindow.xaml b/src/StyleMaze/MainWindow.xaml
+index 8e39910..8dae94b 100644
+--- a/src/StyleMaze/MainWindow.xaml
++++ b/src/StyleMaze/MainWindow.xaml
+@@ -7,9 +7,25 @@
+         Height="560"
+         Background="#F7F7FB">
+     <Window.Resources>
+-        <Style TargetType="TextBlock">
+-            <Setter Property="Foreground" Value="#2B1F73" />
+-            <Setter Property="FontSize" Value="15" />
++        <Style TargetType="TextBlock" BasedOn="{StaticResource BrandTextBlockStyle}" />
++        <Style TargetType="local:DangerButton" BasedOn="{StaticResource {x:Type Button}}">
++            <Setter Property="Template">
++                <Setter.Value>
++                    <ControlTemplate TargetType="local:DangerButton">
++                        <Border x:Name="Chrome"
++                                Padding="{TemplateBinding Padding}"
++                                Background="{TemplateBinding Background}"
++                                CornerRadius="6">
++                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
++                        </Border>
++                        <ControlTemplate.Triggers>
++                            <Trigger Property="IsMouseOver" Value="True">
++                                <Setter TargetName="Chrome" Property="Background" Value="#A61F1F" />
++                            </Trigger>
++                        </ControlTemplate.Triggers>
++                    </ControlTemplate>
++                </Setter.Value>
++            </Setter>
+         </Style>
+     </Window.Resources>
+ 
+@@ -40,14 +56,15 @@
+             <StackPanel x:Name="SecondaryActions"
+                         Margin="0,0,0,24"
+                         Orientation="Horizontal">
+-                <StackPanel.Resources>
+-                    <Style TargetType="Button">
+-                        <Setter Property="Margin" Value="0,0,8,0" />
+-                    </Style>
+-                </StackPanel.Resources>
+-                <Button x:Name="InviteButton" Content="Invite" />
+-                <Button x:Name="ArchiveButton" Content="Archive" />
+-                <Button x:Name="ExportButton" Content="Export" />
++                <Button x:Name="InviteButton"
++                        Style="{StaticResource SecondaryActionButtonStyle}"
++                        Content="Invite" />
++                <Button x:Name="ArchiveButton"
++                        Style="{StaticResource SecondaryActionButtonStyle}"
++                        Content="Archive" />
++                <Button x:Name="ExportButton"
++                        Style="{StaticResource SecondaryActionButtonStyle}"
++                        Content="Export" />
+             </StackPanel>
+ 
+             <TextBlock Margin="0,0,0,8"
+@@ -56,6 +73,9 @@
+             <ItemsControl x:Name="RecentProjects" ItemsSource="{Binding RecentProjects}">
+                 <ItemsControl.ItemTemplate>
+                     <DataTemplate>
++                        <DataTemplate.Resources>
++                            <Style TargetType="TextBlock" BasedOn="{StaticResource BrandTextBlockStyle}" />
++                        </DataTemplate.Resources>
+                         <Border Margin="0,0,0,6"
+                                 Padding="12,8"
+                                 Background="White"
+diff --git a/src/StyleMaze/Themes/Brand.xaml b/src/StyleMaze/Themes/Brand.xaml
+index 123f650..ac89894 100644
+--- a/src/StyleMaze/Themes/Brand.xaml
++++ b/src/StyleMaze/Themes/Brand.xaml
+@@ -2,6 +2,12 @@
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+     <SolidColorBrush x:Key="AccentBrush" Color="#5B3FD9" />
+     <SolidColorBrush x:Key="AccentHoverBrush" Color="#4A31BD" />
++    <SolidColorBrush x:Key="BrandTextBrush" Color="#2B1F73" />
++
++    <Style x:Key="BrandTextBlockStyle" TargetType="TextBlock">
++        <Setter Property="Foreground" Value="{DynamicResource BrandTextBrush}" />
++        <Setter Property="FontSize" Value="15" />
++    </Style>
+ 
+     <Style TargetType="Button">
+         <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+@@ -27,4 +33,14 @@
+             </Setter.Value>
+         </Setter>
+     </Style>
++
++    <Style x:Key="{x:Static ToolBar.ButtonStyleKey}"
++           TargetType="Button"
++           BasedOn="{StaticResource {x:Type Button}}" />
++
++    <Style x:Key="SecondaryActionButtonStyle"
++           TargetType="Button"
++           BasedOn="{StaticResource {x:Type Button}}">
++        <Setter Property="Margin" Value="0,0,8,0" />
++    </Style>
+ </ResourceDictionary>
+diff --git a/src/StyleMaze/Themes/LegacyReports.xaml b/src/StyleMaze/Themes/LegacyReports.xaml
+index c14b291..7eda952 100644
+--- a/src/StyleMaze/Themes/LegacyReports.xaml
++++ b/src/StyleMaze/Themes/LegacyReports.xaml
+@@ -3,5 +3,5 @@
+     <!-- Colors kept for the old Reports screen. -->
+     <SolidColorBrush x:Key="ReportHeaderBrush" Color="#2F3B52" />
+     <SolidColorBrush x:Key="ReportGridLineBrush" Color="#D5D9E0" />
+-    <SolidColorBrush x:Key="AccentBrush" Color="#E8590C" />
++    <SolidColorBrush x:Key="ReportAccentBrush" Color="#E8590C" />
+ </ResourceDictionary>

@@ -1,0 +1,17 @@
+[11:21:32] Stop + reset
+[11:21:36] Start StyleMaze
+[11:21:55] App pid 34104
+[11:22:00] Send prompt
+[11:22:09] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\c07818bc-7946-49f9-91ad-4d7aef428827
+[11:39:18] Main turn: stalled
+[11:39:23] Send follow-up
+[11:39:39] Follow-up ERROR You cannot call a method on a null-valued expression.
+[11:39:40] Stats {"tools":{"skill":1,"xaml_list_apps":1,"get_projects_in_solution":1,"xaml_capture_image":2,"xaml_get_visual_tree":1,"xaml_get_resource_dictionaries":1,"glob":3,"view":5,"xaml_get_element_styles":9,"xaml_find_resource":2,"rg":2,"get_file":4,"multi_replace_string_in_file":2,"xaml_apply_hot_reload":1,"xaml_get_hot_reload_status":1,"xaml_get_hot_reload_log":1},"failed":0,"images":2}
+[11:39:41] Debugger mode at end: 3 (1=design 2=break 3=run)
+[12:10:07] Finished
+[12:11:32] Main turn: done
+[12:11:37] Send follow-up
+[12:12:00] Follow-up: done
+[12:12:00] Stats {"tools":{"skill":1,"xaml_list_apps":2,"get_projects_in_solution":1,"xaml_capture_image":2,"xaml_get_visual_tree":1,"xaml_get_resource_dictionaries":1,"glob":3,"view":5,"xaml_get_element_styles":9,"xaml_find_resource":2,"rg":2,"get_file":7,"multi_replace_string_in_file":2,"xaml_apply_hot_reload":2,"xaml_get_hot_reload_status":1,"xaml_get_hot_reload_log":1,"xaml_get_diagnostics_status":1,"run_build":1,"powershell":1,"task_complete":2},"failed":1,"images":2}
+[12:12:01] Debugger mode at end: 1 (1=design 2=break 3=run)
+[12:12:04] Finished

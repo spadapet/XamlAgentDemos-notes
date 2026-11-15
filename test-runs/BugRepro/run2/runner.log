@@ -1,0 +1,10 @@
+[08:07:15] Stop + reset
+[08:07:20] Start BugRepro
+[08:07:33] App pid 19588
+[08:07:40] Send prompt
+[08:07:57] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\dd0c05da-9120-4b24-b6aa-502fc7428995
+[08:13:21] Main turn: done
+[08:13:26] Send follow-up
+[08:13:58] Follow-up: done
+[08:13:59] Stats {"tools":{"skill":1,"get_file":8,"xaml_list_apps":1,"xaml_capture_image":14,"xaml_get_visual_tree":1,"xaml_interact":20,"xaml_get_element_properties":34,"rg":4,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_get_hot_reload_log":1,"powershell":2,"task_complete":2},"failed":0,"images":12}
+[08:14:03] Finished

@@ -1,0 +1,109 @@
+diff --git a/src/ThemeBreaker/App.xaml b/src/ThemeBreaker/App.xaml
+index 2c6b3d6..98737b9 100644
+--- a/src/ThemeBreaker/App.xaml
++++ b/src/ThemeBreaker/App.xaml
+@@ -19,7 +19,7 @@
+             </Style>
+ 
+             <Style x:Key="SecondaryTextStyle" TargetType="TextBlock">
+-                <Setter Property="Foreground" Value="{StaticResource SecondaryText}" />
++                <Setter Property="Foreground" Value="{DynamicResource SecondaryText}" />
+                 <Setter Property="FontSize" Value="13" />
+             </Style>
+ 
+@@ -56,7 +56,7 @@
+                     <Setter.Value>
+                         <ControlTemplate TargetType="Button">
+                             <Border Padding="{TemplateBinding Padding}"
+-                                    Background="#E9ECF1"
++                                    Background="{TemplateBinding Background}"
+                                     CornerRadius="6">
+                                 <ContentPresenter HorizontalAlignment="Center" />
+                             </Border>
+@@ -71,6 +71,37 @@
+                 <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}" />
+                 <Setter Property="Padding" Value="14,6" />
+                 <Setter Property="VerticalAlignment" Value="Center" />
++                <Setter Property="Template">
++                    <Setter.Value>
++                        <ControlTemplate TargetType="ToggleButton">
++                            <Border x:Name="ToggleBorder"
++                                    Padding="{TemplateBinding Padding}"
++                                    Background="{TemplateBinding Background}"
++                                    BorderBrush="{TemplateBinding BorderBrush}"
++                                    BorderThickness="{TemplateBinding BorderThickness}"
++                                    CornerRadius="6">
++                                <ContentPresenter HorizontalAlignment="Center"
++                                                  VerticalAlignment="Center"
++                                                  RecognizesAccessKey="True" />
++                            </Border>
++                            <ControlTemplate.Triggers>
++                                <Trigger Property="IsChecked" Value="True">
++                                    <Setter TargetName="ToggleBorder" Property="Background" Value="{DynamicResource AccentBrush}" />
++                                    <Setter Property="Foreground" Value="{DynamicResource AccentText}" />
++                                </Trigger>
++                                <Trigger Property="IsMouseOver" Value="True">
++                                    <Setter TargetName="ToggleBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
++                                </Trigger>
++                                <Trigger Property="IsPressed" Value="True">
++                                    <Setter TargetName="ToggleBorder" Property="Opacity" Value="0.85" />
++                                </Trigger>
++                                <Trigger Property="IsEnabled" Value="False">
++                                    <Setter TargetName="ToggleBorder" Property="Opacity" Value="0.5" />
++                                </Trigger>
++                            </ControlTemplate.Triggers>
++                        </ControlTemplate>
++                    </Setter.Value>
++                </Setter>
+             </Style>
+         </ResourceDictionary>
+     </Application.Resources>
+diff --git a/src/ThemeBreaker/MainWindow.xaml b/src/ThemeBreaker/MainWindow.xaml
+index 660fd6a..c0ab26a 100644
+--- a/src/ThemeBreaker/MainWindow.xaml
++++ b/src/ThemeBreaker/MainWindow.xaml
+@@ -5,11 +5,6 @@
+         Width="960"
+         Height="620"
+         Background="{DynamicResource WindowBackground}">
+-    <Window.Resources>
+-        <!-- Temporary override for the design review screenshots. -->
+-        <SolidColorBrush x:Key="CardBackground" Color="#FFFFFF" />
+-    </Window.Resources>
+-
+     <DockPanel Margin="24">
+         <DockPanel Margin="0,0,0,20" DockPanel.Dock="Top">
+             <ToggleButton x:Name="DarkModeToggle"
+@@ -23,7 +18,7 @@
+                 <TextBlock x:Name="HeaderTitle"
+                            FontSize="26"
+                            FontWeight="SemiBold"
+-                           Foreground="{StaticResource PrimaryText}"
++                           Foreground="{DynamicResource PrimaryText}"
+                            Text="Contoso Dashboard" />
+                 <TextBlock x:Name="HeaderSubtitle"
+                            Style="{StaticResource SecondaryTextStyle}"
+@@ -55,9 +50,7 @@
+                     <TextBlock Style="{StaticResource MetricTextStyle}" Text="1,284" />
+                 </StackPanel>
+             </Border>
+-            <Border x:Name="TicketsCard"
+-                    Background="White"
+-                    Style="{StaticResource CardStyle}">
++            <Border x:Name="TicketsCard" Style="{StaticResource CardStyle}">
+                 <StackPanel>
+                     <TextBlock Style="{StaticResource SecondaryTextStyle}" Text="Open tickets" />
+                     <TextBlock Style="{StaticResource MetricTextStyle}" Text="37" />
+diff --git a/src/ThemeBreaker/Themes/Dark.xaml b/src/ThemeBreaker/Themes/Dark.xaml
+index 7c08c1c..54e3982 100644
+--- a/src/ThemeBreaker/Themes/Dark.xaml
++++ b/src/ThemeBreaker/Themes/Dark.xaml
+@@ -5,7 +5,7 @@
+     <SolidColorBrush x:Key="CardBorder" Color="#353943" />
+     <SolidColorBrush x:Key="PrimaryText" Color="#F1F3F7" />
+     <SolidColorBrush x:Key="SecondaryText" Color="#A3AAB7" />
+-    <SolidColorBrush x:Key="AccentBush" Color="#748FFC" />
++    <SolidColorBrush x:Key="AccentBrush" Color="#748FFC" />
+     <SolidColorBrush x:Key="AccentText" Color="#FFFFFF" />
+     <SolidColorBrush x:Key="ButtonBackground" Color="#2E323B" />
+ </ResourceDictionary>

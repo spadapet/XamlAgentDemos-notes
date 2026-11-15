@@ -1,0 +1,2 @@
+ M src/BugRepro/MainWindow.xaml
+ M src/BugRepro/ProfileViewModel.cs

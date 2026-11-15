@@ -1,0 +1,12 @@
+[11:11:23] Stop + reset
+[11:11:27] Start StyleMaze
+[11:11:44] App pid 71180
+[11:11:50] Send prompt
+[harness] re-showed hidden VS main window
+[11:11:58] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\3261ff34-210c-4b61-8220-a9381c56924d
+[11:15:30] Main turn: done
+[11:15:35] Send follow-up
+[11:16:31] Follow-up: done
+[11:16:31] Stats {"tools":{"skill":1,"multi_replace_string_in_file":2,"xaml_list_apps":1,"xaml_capture_image":2,"xaml_get_visual_tree":2,"xaml_get_resource_dictionaries":1,"get_file":8,"rg":3,"xaml_get_element_properties":4,"xaml_get_element_styles":12,"xaml_explain_property_value":7,"powershell":2,"xaml_apply_hot_reload":1,"xaml_find_elements":1,"xaml_find_resource":1,"task_complete":2},"failed":1,"images":2}
+[11:16:31] Debugger mode at end: 3 (1=design 2=break 3=run)
+[11:16:35] Finished

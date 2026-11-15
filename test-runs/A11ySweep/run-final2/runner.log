@@ -1,0 +1,11 @@
+[23:39:31] Stop + reset
+[23:39:35] Start A11ySweep
+[23:39:49] App pid 39112
+[23:39:55] Send prompt
+[23:40:02] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\62d897f0-eeab-4de1-bb2e-d4127dcc1861
+[23:43:59] Main turn: done
+[23:44:04] Send follow-up
+[23:44:49] Follow-up: done
+[23:44:50] Stats {"tools":{"skill":1,"xaml_get_status":2,"xaml_run_accessibility_check":5,"get_file":6,"rg":3,"multi_replace_string_in_file":3,"xaml_apply_hot_reload":2,"xaml_find_elements":3,"xaml_capture_image":4,"xaml_get_element_properties":2,"xaml_interact":5,"xaml_get_hot_reload_log":1,"xaml_hit_test":2,"xaml_get_binding_failures":2,"xaml_clear_binding_failures":1,"task_complete":2},"failed":0,"images":1}
+[23:44:51] Debugger mode at end: 3 (1=design 2=break 3=run)
+[23:44:54] Finished

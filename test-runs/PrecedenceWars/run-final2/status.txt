@@ -1,0 +1,3 @@
+ M src/PrecedenceWars/MainWindow.xaml
+ M src/PrecedenceWars/MainWindow.xaml.cs
+ M src/PrecedenceWars/StoreViewModel.cs
