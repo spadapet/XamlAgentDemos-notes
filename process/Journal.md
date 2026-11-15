@@ -108,3 +108,8 @@ The user ran "Where is my Save button?" and got only an explanation of 1 of the 
 
 ## Finding #113: overlap check for latent overlays
 A critic review of #112 found that the latent `covered` cause didn't verify overlap. Added a batched bounds check (at least 50% coverage) with a stretch-to-fill fallback for zero-size layouts. Live run where4 exposed two more bugs: WPF alignment enum numbers, and the fixedInSource window being too small for multi-line tags. Both were fixed and verified in where5 (4/4, 0 failed calls, 1.6 min). See TestPass.md #113.
+
+## Output compaction, DPI fix, LVT analysis (2026-11-15)
+- Compaction (#114): shorter notes, short framework type names, defaultSourceFile. VanishingSave output 16.1 KB -> 14.0 KB with more calls.
+- compact1 run exposed a DPI-virtualization bug in host-side window rects (#115): all bounds reported clippedByWindow on a 150% secondary monitor and the model chased it for 4 minutes. Fixed with a per-monitor-v2 thread DPI scope; compact2 clean in 1.8 min.
+- LVT analysis: tree/find used in 56/62 runs, mostly as a locator; targeted tools do the source mapping.
