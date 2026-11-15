@@ -97,3 +97,8 @@ out\tests\x86chk\DesignTools.Tests.Unit.XamlDiagnostics\DesignTools.Tests.Unit.X
 - Batch inputs and fewer, well-named tools reduced round trips without hurting tool selection.
 - Hide answer keys from the agent under test. Keep the desktop unlocked for UIA-driven harnesses.
 - Hot reload "applied" must account for code (.NET) hot reload failures, not just XAML.
+
+## Demo recommendation (2026-11-15)
+- **VanishingSave** (primary). Prompt: "There should be a Save button in the footer of my running app, but I can't see it. Find out every reason it's not visible and fix them." Four stacked causes: CanSave binding collapsing the button, a 0-width footer column (compact-footer default), a status overlay covering it, and disabled opacity 0.4. 4/4 fixed in every pass. Recent runs: 2.1 min (run-consolidated), 3.0 min (r9), 2.5 min (r10, 0 failed calls). Shows `xaml_explain_visibility`, bounds/hit-test, live set-property experiments, hot reload and before/after captures.
+- **GhostClicks** (backup, 1.2–1.5 min). Hit-test proves an invisible overlay eats clicks; less visual change.
+- **BindingStorm** (finale). 10/10 binding failures across tabs and a dialog, many screenshots, but 2.6–5.0 min.
