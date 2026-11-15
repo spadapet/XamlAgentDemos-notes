@@ -69,6 +69,7 @@ The harness scripts live in the Copilot CLI session folder (`files\harness`).
 | BindingStorm | r9 | 10/10, final list empty | yes (all 4 tabs + Order Details window) | 0 failed calls, 8 images. Wants a "sweep views" tool that visits tabs/dialogs and reports failures per view (open, #109). Noted the visual tree only shows the selected tab's content. |
 | VanishingSave | r10 | 4/4 | yes | Verified #104/#105: no false Visibility causes, binding shown as `{Binding} -> Collapsed`, 0 failed calls. |
 | PrecedenceWars | r10 | 5/5 | yes | Verified #102: 4 mixed `nameFilter` calls such as `Text|DataContext.ItemCount`, 0 failed calls. |
+| A11ySweep | pane-check | n/a (read-only) | yes | Only `xaml_run_accessibility_check` was called. It returned 8 NameNotNull issues, and the Accessibility Checker pane showed the same issues with file and line (5 rows realized through UI Automation; the table virtualizes). Verifies #110. |
 
 ## Findings (tooling and skill)
 
@@ -183,6 +184,7 @@ The harness scripts live in the Copilot CLI session folder (`files\harness`).
 | 107 | VanishingSave r9 | `ColumnDefinitions[*]...|RowDefinitions[*]` failed the whole call because RowDefinitions was null. | With several path groups, a failing group becomes `{path, error, message}` in `items`. |
 | 108 | VanishingSave r9 | `applied=true` while .NET Hot Reload had failed confused the agent. | With `includeCodeChanges`, `applied` is false when `codeStatus=failed`, the summary starts "Code changes did NOT apply", and `xamlApplied` reports the XAML part. |
 | 109 | BindingStorm r9 | Finding every binding failure needs manual navigation of tabs and dialogs. | Open idea: a "sweep views" helper (multi-step `xaml_interact` with captureAfter). |
+| 110 | User question | `xaml_run_accessibility_check` used a private view model, so the Accessibility Checker pane never showed the agent's results. | The tool uses the pane's view model (`FindToolWindow(create: true)`) and shows the pane with `ShowNoActivate`, falling back to a private view model if the pane can't be created. Verified in A11ySweep pane-check. |
 
 ## Harness notes
 - Find-SessionDirForPrompt now also matches the JSON-escaped form of the prompt snippet (backslashes doubled, quotes escaped); a prompt with a path failed to match (PixelPerfect run1).
