@@ -1,0 +1,11 @@
+[11:25:19] Stop + reset
+[11:25:22] Start A11ySweep
+[11:25:35] App pid 22632
+[11:25:43] Send prompt
+[11:25:53] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\546cfe41-4c90-4437-8bfc-ae01503ee36f
+[11:26:21] Main turn: done
+[11:26:26] Send user turn: What happened with the accessibility check? Explain exactly what the tool told you and what you think you should do next. Don't run anything.
+[11:26:45] User turn: done
+[11:26:45] Stats {"tools":{"skill":1,"xaml_get_status":1,"xaml_run_accessibility_check":1,"task_complete":2},"failed":1,"images":0}
+[11:26:46] Debugger mode at end: 3 (1=design 2=break 3=run)
+[11:26:46] Finished
