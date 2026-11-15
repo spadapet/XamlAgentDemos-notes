@@ -1,0 +1,11 @@
+[09:40:10] Stop + reset
+[09:40:14] Start VanishingSave
+[09:40:27] App pid 78360
+[09:40:32] Send prompt
+[09:40:38] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\c2fdee87-feaf-486d-85e0-7454682569cb
+[09:43:31] Main turn: done
+[09:43:36] Send follow-up
+[09:44:23] Follow-up: done
+[09:44:23] Stats {"tools":{"skill":1,"xaml_get_status":1,"xaml_find_elements":2,"xaml_capture_image":2,"xaml_explain_visibility":2,"xaml_get_visual_tree":1,"xaml_get_binding_failures":2,"get_file":9,"rg":2,"xaml_explain_property_value":1,"xaml_get_element_properties":8,"xaml_hit_test":2,"view":1,"powershell":3,"multi_replace_string_in_file":1,"remove_file":1,"xaml_apply_hot_reload":1,"xaml_set_element_property":1,"xaml_clear_binding_failures":1,"xaml_get_element_bounds":1,"xaml_get_hot_reload_log":1,"replace_string_in_file":1,"task_complete":2},"failed":1,"images":2}
+[09:44:24] Debugger mode at end: 3 (1=design 2=break 3=run)
+[09:44:27] Finished

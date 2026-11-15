@@ -1,0 +1,64 @@
+diff --git a/src/StyleMaze/MainWindow.xaml b/src/StyleMaze/MainWindow.xaml
+index 8e39910..888c965 100644
+--- a/src/StyleMaze/MainWindow.xaml
++++ b/src/StyleMaze/MainWindow.xaml
+@@ -11,6 +11,8 @@
+             <Setter Property="Foreground" Value="#2B1F73" />
+             <Setter Property="FontSize" Value="15" />
+         </Style>
++        <Style TargetType="{x:Type local:DangerButton}"
++               BasedOn="{StaticResource BrandButtonStyle}" />
+     </Window.Resources>
+ 
+     <DockPanel>
+@@ -40,14 +42,9 @@
+             <StackPanel x:Name="SecondaryActions"
+                         Margin="0,0,0,24"
+                         Orientation="Horizontal">
+-                <StackPanel.Resources>
+-                    <Style TargetType="Button">
+-                        <Setter Property="Margin" Value="0,0,8,0" />
+-                    </Style>
+-                </StackPanel.Resources>
+-                <Button x:Name="InviteButton" Content="Invite" />
+-                <Button x:Name="ArchiveButton" Content="Archive" />
+-                <Button x:Name="ExportButton" Content="Export" />
++                <Button x:Name="InviteButton" Margin="0,0,8,0" Content="Invite" />
++                <Button x:Name="ArchiveButton" Margin="0,0,8,0" Content="Archive" />
++                <Button x:Name="ExportButton" Margin="0,0,8,0" Content="Export" />
+             </StackPanel>
+ 
+             <TextBlock Margin="0,0,0,8"
+diff --git a/src/StyleMaze/Themes/Brand.xaml b/src/StyleMaze/Themes/Brand.xaml
+index 123f650..d62e01b 100644
+--- a/src/StyleMaze/Themes/Brand.xaml
++++ b/src/StyleMaze/Themes/Brand.xaml
+@@ -3,7 +3,7 @@
+     <SolidColorBrush x:Key="AccentBrush" Color="#5B3FD9" />
+     <SolidColorBrush x:Key="AccentHoverBrush" Color="#4A31BD" />
+ 
+-    <Style TargetType="Button">
++    <Style x:Key="BrandButtonStyle" TargetType="Button">
+         <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+         <Setter Property="Foreground" Value="White" />
+         <Setter Property="FontWeight" Value="SemiBold" />
+@@ -27,4 +27,8 @@
+             </Setter.Value>
+         </Setter>
+     </Style>
++    <Style TargetType="Button" BasedOn="{StaticResource BrandButtonStyle}" />
++    <Style x:Key="{x:Static ToolBar.ButtonStyleKey}"
++           TargetType="Button"
++           BasedOn="{StaticResource BrandButtonStyle}" />
+ </ResourceDictionary>
+diff --git a/src/StyleMaze/Themes/LegacyReports.xaml b/src/StyleMaze/Themes/LegacyReports.xaml
+index c14b291..7eda952 100644
+--- a/src/StyleMaze/Themes/LegacyReports.xaml
++++ b/src/StyleMaze/Themes/LegacyReports.xaml
+@@ -3,5 +3,5 @@
+     <!-- Colors kept for the old Reports screen. -->
+     <SolidColorBrush x:Key="ReportHeaderBrush" Color="#2F3B52" />
+     <SolidColorBrush x:Key="ReportGridLineBrush" Color="#D5D9E0" />
+-    <SolidColorBrush x:Key="AccentBrush" Color="#E8590C" />
++    <SolidColorBrush x:Key="ReportAccentBrush" Color="#E8590C" />
+ </ResourceDictionary>

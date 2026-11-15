@@ -1,0 +1,11 @@
+[09:48:26] Stop + reset
+[09:48:29] Start BindingStorm
+[09:48:42] App pid 39180
+[09:48:47] Send prompt
+[09:48:53] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\cfd1c693-4029-4358-bb5b-e0d70870bc20
+[09:51:21] Main turn: done
+[09:51:26] Send follow-up
+[09:52:12] Follow-up: done
+[09:52:12] Stats {"tools":{"skill":1,"xaml_get_status":2,"xaml_get_visual_tree":1,"xaml_get_binding_failures":10,"get_file":5,"glob":1,"rg":2,"xaml_clear_binding_failures":2,"xaml_interact":9,"xaml_capture_image":8,"multi_replace_string_in_file":1,"xaml_apply_hot_reload":1,"xaml_get_element_properties":1,"xaml_get_hot_reload_log":1,"task_complete":2},"failed":0,"images":8}
+[09:52:13] Debugger mode at end: 3 (1=design 2=break 3=run)
+[09:52:16] Finished
