@@ -105,3 +105,6 @@ out\tests\x86chk\DesignTools.Tests.Unit.XamlDiagnostics\DesignTools.Tests.Unit.X
 
 ## Finding #112: short demo prompt (user report)
 The user ran "Where is my Save button?" and got only an explanation of 1 of the 4 causes. `xaml_explain_visibility` couldn't see causes masked by Collapsed (the zero-width column and the overlay). Added latent causes, a cause count in the verdict, a JValue-null crash fix and stale binding-failure tagging, and the SKILL.md guidance "where is X means fix it". Reran where1-3 and r11: all 4/4, the last three with 0 failed calls. Demo prompt can now be the short "Where is my Save button?".
+
+## Finding #113: overlap check for latent overlays
+A critic review of #112 found that the latent `covered` cause didn't verify overlap. Added a batched bounds check (at least 50% coverage) with a stretch-to-fill fallback for zero-size layouts. Live run where4 exposed two more bugs: WPF alignment enum numbers, and the fixedInSource window being too small for multi-line tags. Both were fixed and verified in where5 (4/4, 0 failed calls, 1.6 min). See TestPass.md #113.
