@@ -75,3 +75,7 @@ dotnet build XamlAgentDemos.sln
 - App-specific: ThemeBreaker `--dark`; GermanReady `--lang de|qps`; PixelPerfect `--render-xaml <xaml> <png>`.
 
 `New-DemoApp.ps1 <Name>` scaffolds a new demo app and adds it to the solution.
+
+## Process logs
+See [process/Journal.md](process/Journal.md) for the chronological design → implementation → deployment → testing → iteration history, with links to checkpoints, the plan, the full session transcript, the harness, and the analysis scripts.
+

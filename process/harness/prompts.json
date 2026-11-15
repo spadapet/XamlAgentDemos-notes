@@ -1,0 +1,19 @@
+{
+  "A11ySweep": "Run an accessibility check on my running app, fix every issue in the XAML, and verify it's clean.",
+  "BindingStorm": "Exercise every tab and dialog in my running app, collect all binding failures, fix them all in source, and prove the list is clean.",
+  "BugRepro": "Here's a bug report from a user in src\\BugRepro\\bug-report.md. Reproduce it in my running app, find the root cause, fix it, and prove it's fixed by replaying the steps.",
+  "CrispPixels": "My invoice screen looks blurry, especially the thin lines, the icons and the text. Find every cause in the running app and fix it.",
+  "DesignPolish": "Audit my running pricing page against design-tokens.md. List every spacing, font size, color and corner radius that isn't a token, then fix the XAML to use token resources and show me before/after.",
+  "GermanReady": "Test my running checkout page in German and pseudo-localization. Find every place text is clipped or truncated and fix the layout so it works in all languages.",
+  "GhostClicks": "In my running app, Settings, Reply, Forward, Archive and the left edge of Previous don't respond to mouse clicks, and message rows only work when I click right on the text. Find out why using the live app and fix it.",
+  "HotReloadDoctor": "XAML Hot Reload is broken in my running app. I made three edits (title color, tip template, page background in Skin.xaml) and none of them show up. Figure out what's going on.",
+  "LostWindows": "When I click Settings, Notifications or Inspector in my running app, nothing shows up. Find out what's happening and fix it so it can never happen again.",
+  "PixelPerfect": "Here's the designer's mockup: src\\PixelPerfect\\design\\mockup.png. Make my running sign-in page match it as closely as possible, and show me before/after screenshots.",
+  "PrecedenceWars": "Each card in my running app has a property that refuses to change. Figure out why for every card using the live app, prove it, and fix the source.",
+  "ResponsiveDashboard": "Customers on small laptops say my dashboard is broken. Test the running app at 1280, 1024 and 800 px wide, show me what breaks at each size, then fix the layout and prove it works at all three.",
+  "SlowScroll": "My log viewer is very slow to open and scroll. Use the running app to prove what's wrong, then fix it and show me the improvement after each change.",
+  "StyleMaze": "We have a brand style in Themes/Brand.xaml, but a lot of my running app doesn't use it. Find every element that isn't branded, explain why, and fix it.",
+  "TemplateDetective": "My activity feed should show different layouts for comments, commits, deployments and security alerts, but everything shows as \"X mentioned you\". Use the running app to find out why and fix it.",
+  "ThemeBreaker": "Dark mode in my running app looks broken. Use the live app to find every element that didn't switch theme, explain why each one didn't, and fix the source.",
+  "VanishingSave": "There should be a Save button in the footer of my running app, but I can't see it. Find out every reason it's not visible and fix them."
+}

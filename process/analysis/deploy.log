@@ -1,0 +1,141 @@
+
+  +-----------------------------------------------+
+  |         XAML Deploy to Visual Studio           |
+  +-----------------------------------------------+
+
+  Build type:   
+chk
+  NetSDK path:  
+Q:\src\VS_xaml\out\binaries\x86chk\bin\netsdk\Xaml
+  VS install:   
+C:\vs\fastmain
+  Components:   
+Diagnostics only
+
+
+  -- Diagnostics: XamlDiagnostics extension --
+    OK    
+Microsoft.VisualStudio.DesignTools.Diagnostics.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.Diagnostics.pkgdef
+    OK    
+Microsoft.VisualStudio.DesignTools.Diagnostics.resources.dll
+
+  -- Diagnostics: Copilot skills --
+    OK    
+SKILL.md
+    OK    
+enablement-and-troubleshooting.md
+    OK    
+xaml-authoring.md
+  SKIP  Diagnostics MAUI integration (Xamarin.VisualStudio.Interfaces.dll is not installed)
+    SKIP  
+VsDebugEng.Xaml.vsdconfig
+ (not found)
+    SKIP  
+VsDebugEng.Xaml.dll
+ (not found)
+    OK    
+VsDebugEng.Xaml.dll
+    OK    
+LivePreviewSurface.exe
+    OK    
+LivePreviewSurface.exe
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTapBootstrap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTapBootstrap.dll
+
+  -- Diagnostics: TAP assemblies --
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.runtimeconfig.json
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.runtimeconfig.json
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WpfTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.UwpTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.UwpTap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WinUITap.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.WinUITap.dll
+
+  -- Diagnostics: Mobile / Hot Reload --
+    OK    
+Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.TapContract.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
+    OK    
+Microsoft.Maui.Controls.HotReload.Forms.dll
+    OK    
+Microsoft.VisualStudio.HotReload.MobileTapInitializer.dll
+    OK    
+Microsoft.VisualStudio.HotReload.targets
+
+  -- Diagnostics: PrivateAssemblies --
+    OK    
+Microsoft.VisualStudio.DesignTools.DiagnosticsBase.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.DiagnosticsMobile.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.TapContract.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.XamlTapContract.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.RuntimeHostBase.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.RuntimeHost.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.Markup.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.UtilityBase.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.Utility.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.DiagnosticsBase.resources.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.DiagnosticsMobile.resources.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.RuntimeHostBase.resources.dll
+    OK    
+Microsoft.VisualStudio.DesignTools.RuntimeHost.resources.dll
+
+  -- Diagnostics: Remote Debugger --
+    SKIP  
+VsDebugEng.Xaml.vsdconfig
+ (not found)
+    SKIP  
+VsDebugEng.Xaml.dll
+ (not found)
+    OK    
+VsDebugEng.Xaml.dll
+
+  +-----------------------------------------------+
+  |                    Summary                     |
+  +-----------------------------------------------+
+
+    Copied:  
+42
+    Skipped: 
+4
+    Failed:  
+0
+
+  Some files were skipped (not found in build output).
+  Build the relevant projects first, or use -Designer / -Diagnostics.
+
+  Updating devenv configuration...
+  Done.
+
