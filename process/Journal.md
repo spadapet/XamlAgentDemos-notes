@@ -113,3 +113,7 @@ A critic review of #112 found that the latent `covered` cause didn't verify over
 - Compaction (#114): shorter notes, short framework type names, defaultSourceFile. VanishingSave output 16.1 KB -> 14.0 KB with more calls.
 - compact1 run exposed a DPI-virtualization bug in host-side window rects (#115): all bounds reported clippedByWindow on a 150% secondary monitor and the model chased it for 4 minutes. Fixed with a per-monitor-v2 thread DPI scope; compact2 clean in 1.8 min.
 - LVT analysis: tree/find used in 56/62 runs, mostly as a locator; targeted tools do the source mapping.
+
+## DPI audit (2026-11-16)
+- Audited every screen-coordinate path (#116). The real #115 cause was the system-aware demo apps: WPF PointToScreen returns virtualized coordinates on a non-system-DPI monitor. Fixed in the WPF TAP (logical-to-physical transform) and in the status dpiScale (monitor effective DPI).
+- GhostClicks dpi1 regression run at 96 DPI was clean. Mixed DPI is unverified because no second monitor is available.
