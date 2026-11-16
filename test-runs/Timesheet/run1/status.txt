@@ -1,0 +1,2 @@
+ M src/Timesheet/MainWindow.xaml
+?? src/Timesheet/HoursValidationRule.cs

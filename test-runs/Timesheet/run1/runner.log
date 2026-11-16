@@ -1,0 +1,13 @@
+[17:14:21] Stop + reset
+[17:14:25] Start Timesheet
+[17:14:43] App pid 27236
+[17:14:43] Pre-action
+[17:14:49] Send prompt
+[17:14:56] Session C:\Users\peterspa\AppData\Local\Microsoft\VisualStudio\CopilotCli\session-state\a3dbf4c7-e8d3-4df5-af3c-0a8e64e165fa
+[17:18:52] Main turn: done
+[17:18:57] Send follow-up
+[17:19:06] Follow-up ERROR SendWait(^a) failed
+[17:19:06] Stats {"tools":{"skill":1,"xaml_get_status":2,"get_projects_in_solution":1,"powershell":6,"xaml_get_visual_tree":2,"glob":3,"xaml_capture_image":4,"get_file":8,"xaml_find_elements":3,"xaml_get_element_properties":4,"rg":2,"view":2,"xaml_interact":12,"get_tests":1,"create_file":1,"replace_string_in_file":3,"xaml_apply_hot_reload":3,"task":2,"debugger_stop_debugging":1,"debugger_get_threads":1,"run_build":1,"write_agent":2,"list_agents":1,"debugger_launch":1,"xaml_get_binding_failures":2,"xaml_clear_binding_failures":1,"task_complete":1},"failed":2,"images":2}
+[17:19:06] screenshot failed Exception calling "CopyFromScreen" with "5" argument(s): "The handle is invalid."
+[17:19:06] Debugger mode at end: 3 (1=design 2=break 3=run)
+[17:19:09] Finished

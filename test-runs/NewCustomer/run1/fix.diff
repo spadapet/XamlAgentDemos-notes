@@ -1,0 +1,13 @@
+diff --git a/src/NewCustomer/CustomerFormViewModel.cs b/src/NewCustomer/CustomerFormViewModel.cs
+index c10b732..d666683 100644
+--- a/src/NewCustomer/CustomerFormViewModel.cs
++++ b/src/NewCustomer/CustomerFormViewModel.cs
+@@ -39,7 +39,7 @@ public sealed partial class CustomerFormViewModel : ObservableObject
+     public bool IsValid =>
+         this.FullName.Trim().Contains(' ')
+         && EmailRegex().IsMatch(this.Email)
+-        && PhoneRegex().IsMatch(this.Phone)
++        && PhoneRegex().IsMatch(this.Phone.Replace('\u00A0', ' '))
+         && this.IsPostalCodeValid()
+         && this.Company.Length <= 60;
+ 

@@ -117,3 +117,9 @@ A critic review of #112 found that the latent `covered` cause didn't verify over
 ## DPI audit (2026-11-16)
 - Audited every screen-coordinate path (#116). The real #115 cause was the system-aware demo apps: WPF PointToScreen returns virtualized coordinates on a non-system-DPI monitor. Fixed in the WPF TAP (logical-to-physical transform) and in the status dpiScale (monitor effective DPI).
 - GhostClicks dpi1 regression run at 96 DPI was clean. Mixed DPI is unverified because no second monitor is available.
+
+## Tools-only demos (2026-11-16)
+- User found plain Copilot fixes BindingStorm/VanishingSave/CrispPixels by reading source. Lesson: if the root cause is on disk (even in a compiled DLL), a model with a terminal will find it. The vendor-kit experiment proved it (3/3 solved statically).
+- Tools are irreplaceable for live state: what the user typed or pasted, runtime data, culture and environment, plus live verification of the fix.
+- NewCustomer (NBSP in a pasted phone number) is the new "wow" demo: the static baseline failed (35%, wrong fix); with tools it took 1.6 min, 0 failed calls, verified live. Required a tool fix (#118): invisible characters must be escaped in tool output.
+- Demo input: paste the phone number `+1 425 555 0142` with NBSPs (pre-NewCustomer.ps1 sets it via UIA).
