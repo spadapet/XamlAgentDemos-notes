@@ -1,12 +1,13 @@
 # XAML Diagnostics for Copilot: process journal
 
 This is a chronological record of how the `xaml_*` Copilot tools and the `xaml-diagnostics` skill were designed, built, deployed, tested and iterated on. The detail lives in:
-- `checkpoints/` (001–062): working summaries written at each context compaction, oldest first. `checkpoints/index.md` lists them.
+- `checkpoints/` (001–070): working summaries written at each context compaction, oldest first. `checkpoints/index.md` lists them; they are historical snapshots, not current status.
 - `plan.md`: the approved feature plan, with addenda.
-- `session-transcript.md`: the full Copilot CLI session rendered as Markdown. `session-events.zip` holds the raw `events.jsonl`.
-- `../TestPass.md`: the run table and numbered findings (#1–111).
+- `session-transcript.md` and `session-events.zip`: the initial rendered and raw session archive through the November 15 request. `session-transcript-supplement.md` and `session-events-supplement.zip` continue from the next event through the November 17 request not to create an app. Raw events preserve details truncated in the rendered transcript.
+- `../TestPass.md`: the run table and numbered findings (#1–120).
 - `../test-runs/<Demo>/<tag>/`: per-run artifacts (runner.log, transcript.md, events.jsonl, fix.diff, status.txt, vs-final.png).
-- `harness/`: scripts that drove VS and Copilot Chat. `analysis/`: log-mining scripts, `feedback.md`, and deploy/redirect helpers.
+- `harness/`: scripts that drove VS and Copilot Chat, including NewCustomer and Timesheet setup and prompts. `analysis/`: log-mining scripts, `feedback.md`, and deploy/redirect helpers.
+- `demo-ideas.md`: the unimplemented candidate scenarios and their limitations.
 
 ## Phase 1: research and plan (checkpoints 1–2)
 - Read the public docs (LVT/LPE, binding diagnostics, Live Preview, hot reload, troubleshooting) and the Diagnostics host model: `XamlDiagnosticsHost`, `ElementTreeContainer`, `PropertyExplorer`, binding failures, Accessibility Checker, `LivePreviewManager`, and the hot reload host.
@@ -36,6 +37,7 @@ This is a chronological record of how the `xaml_*` Copilot tools and the `xaml-d
 - `harness/Run-Demo.ps1` drives VS through DTE (COM ROT): open the project, build, F5, wait for the TAP.
 - It sends the prompt to Copilot Chat through UI Automation and waits for the turn to finish by watching the CLI session `events.jsonl`.
 - It then asks follow-up feedback questions ("what did you verify", "what blocked you", "which tools were confusing") and collects artifacts. Finally it resets the demo repo with git checkout/clean.
+- **Harness caution:** the archived reset and redeploy scripts can discard uncommitted demo changes and close or modify a VS instance. Inspect them and the current shared environment before using them again.
 - Operational lessons:
   - A locked or minimized RDP desktop breaks SendKeys and screen capture. Fixed with `KeepAwake.ps1` and longer sleep times on the host machine.
   - Tool permission prompts sometimes appeared even with "allow all". The harness auto-clicks Allow through UIA.
@@ -111,15 +113,21 @@ A critic review of #112 found that the latent `covered` cause didn't verify over
 
 ## Output compaction, DPI fix, LVT analysis (2026-11-15)
 - Compaction (#114): shorter notes, short framework type names, defaultSourceFile. VanishingSave output 16.1 KB -> 14.0 KB with more calls.
-- compact1 run exposed a DPI-virtualization bug in host-side window rects (#115): all bounds reported clippedByWindow on a 150% secondary monitor and the model chased it for 4 minutes. Fixed with a per-monitor-v2 thread DPI scope; compact2 clean in 1.8 min.
+- compact1 run exposed a DPI-virtualization mismatch (#115): all bounds reported clippedByWindow on a 150% secondary monitor and the model chased it for 4 minutes. A host-side DPI scope was added, but the later #116 audit identified the system-aware app-side coordinates as the root cause; compact2 did not verify bounds or hit-test.
 - LVT analysis: tree/find used in 56/62 runs, mostly as a locator; targeted tools do the source mapping.
 
 ## DPI audit (2026-11-16)
 - Audited every screen-coordinate path (#116). The real #115 cause was the system-aware demo apps: WPF PointToScreen returns virtualized coordinates on a non-system-DPI monitor. Fixed in the WPF TAP (logical-to-physical transform) and in the status dpiScale (monitor effective DPI).
 - GhostClicks dpi1 regression run at 96 DPI was clean. Mixed DPI is unverified because no second monitor is available.
 
-## Tools-only demos (2026-11-16)
-- User found plain Copilot fixes BindingStorm/VanishingSave/CrispPixels by reading source. Lesson: if the root cause is on disk (even in a compiled DLL), a model with a terminal will find it. The vendor-kit experiment proved it (3/3 solved statically).
-- Tools are irreplaceable for live state: what the user typed or pasted, runtime data, culture and environment, plus live verification of the fix.
-- NewCustomer (NBSP in a pasted phone number) is the new "wow" demo: the static baseline failed (35%, wrong fix); with tools it took 1.6 min, 0 failed calls, verified live. Required a tool fix (#118): invisible characters must be escaped in tool output.
+## Runtime-state demo experiments (2026-11-16)
+- User found plain Copilot fixes BindingStorm/VanishingSave/CrispPixels by reading source. The vendor-kit experiment showed that compiled assets can also be inspected: all three cases were solved in static-only baselines, though the prompts mentioned inspecting the DLL.
+- Live state and verification are useful strengths of the XAML tools, but these tests do not establish exclusivity over UI Automation, debugger evaluation or other runtime inspection methods.
+- NewCustomer (NBSP in a pasted phone number): the static-only baseline failed to identify or fix the exact cause (35% confidence); with tools it took 1.6 min, 0 failed calls, and verified the enabled state live. Finding #118 improved how invisible characters are represented. The user subsequently considered the input contrived, so this is not a settled team-demo recommendation.
 - Demo input: paste the phone number `+1 425 555 0142` with NBSPs (pre-NewCustomer.ps1 sets it via UIA).
+
+## Follow-up and evidence boundaries (2026-11-17)
+- No new app was requested. The user asked for a large list to choose from; all 24 candidates and the initial shortlist are in `demo-ideas.md`.
+- The baseline agents were not allowed to inspect the running process, so their results establish a source-only comparison, not that diagnosis without these particular tools is impossible. The Timesheet baseline guessed the likely cause; NewCustomer's proposed fix did not handle internal NBSPs.
+- NewCustomer's tool-enabled run verified the original entry, an invalid phone and the enabled button, but did not execute Save. Timesheet's follow-up feedback was not captured because the harness lost foreground focus after debugger relaunch; see finding #120.
+- Accessibility concurrent-run behavior was not verified live, and its component test could not start locally. Mixed-DPI validation remains unverified on this single-monitor machine; see findings #111 and #116.

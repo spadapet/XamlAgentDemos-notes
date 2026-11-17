@@ -66,3 +66,11 @@ Checkpoints are listed in chronological order. Checkpoint 1 is the oldest, highe
 | 60 | Name addressing, output budget, binding status | 060-name-addressing-output-budget.md |
 | 61 | Retest fixes for visibility and filters | 061-retest-fixes-for-visibility-an.md |
 | 62 | Accessibility checker pane integration | 062-accessibility-checker-pane-int.md |
+| 63 | Accessibility cancel fixes, logging, demo pick | 063-accessibility-cancel-fixes-log.md |
+| 64 | Archiving process logs, demo pick | 064-archiving-process-logs-demo-pi.md |
+| 65 | Latent visibility causes for VanishingSave | 065-latent-visibility-causes-for-v.md |
+| 66 | Reducing XAML tool output size | 066-reducing-xaml-tool-output-size.md |
+| 67 | Compacting tool output; LVT usage analysis | 067-compacting-tool-output-lvt-usa.md |
+| 68 | Auditing DPI coordinate handling | 068-auditing-dpi-coordinate-handli.md |
+| 69 | DPI audit and TAP fix | 069-dpi-audit-and-tap-fix.md |
+| 70 | Runtime-only demos and NBSP escaping | 070-runtime-only-demos-and-nbsp-es.md |

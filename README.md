@@ -2,6 +2,8 @@
 
 Small WPF (net10.0-windows) apps with bugs planted on purpose. They show what Copilot can do once it can see and drive a **running** XAML app through Visual Studio's XAML Diagnostics (`xaml_*` tools and the `xaml-diagnostics` skill).
 
+The rankings and tool names below are historical. See [the process journal](process/Journal.md) and [unimplemented demo ideas](process/demo-ideas.md) for later findings, including the source-only baselines and their limitations.
+
 Each app has a `DEMO.md` with the setup, the exact prompt, the expected tool flow, the "wow moment" and an answer key.
 
 ## Demos, ranked by wow factor

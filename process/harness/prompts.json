@@ -15,5 +15,10 @@
   "StyleMaze": "We have a brand style in Themes/Brand.xaml, but a lot of my running app doesn't use it. Find every element that isn't branded, explain why, and fix it.",
   "TemplateDetective": "My activity feed should show different layouts for comments, commits, deployments and security alerts, but everything shows as \"X mentioned you\". Use the running app to find out why and fix it.",
   "ThemeBreaker": "Dark mode in my running app looks broken. Use the live app to find every element that didn't switch theme, explain why each one didn't, and fix the source.",
-  "VanishingSave": "There should be a Save button in the footer of my running app, but I can't see it. Find out every reason it's not visible and fix them."
+  "VanishingSave": "There should be a Save button in the footer of my running app, but I can't see it. Find out every reason it's not visible and fix them.",
+  "DeadFollow": "In my running DeadFollow app, clicking the Follow button on the card does nothing. Find out why and fix it.",
+  "NewCustomer": "In my running NewCustomer app I filled in the new customer form and everything looks valid, but Save stays disabled. Find out why and fix it so what I entered can be saved.",
+  "Timesheet": "I corrected one day in my running Timesheet app and now the total is way too high and it says I need overtime approval. I did not work overtime. Find out why and fix it.",
+  "TeamStrip": "In my running TeamStrip app the team strip shows grey circles with no names or initials. Find out why and fix it.",
+  "KitToolbar": "In my running KitToolbar app the toolbar icons are cut off and not all buttons show. Find out why and fix it."
 }
