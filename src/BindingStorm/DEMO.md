@@ -1,4 +1,4 @@
-# BindingStorm: "Find and fix every binding failure, even the ones you haven't hit yet"
+# BindingStorm: "Find and fix every binding failure, even the ones that aren't hit yet from the other tabs."
 
 **Wow moment:** at startup the Binding Failures window shows only a few entries. The AI *drives the app itself*: it switches every tab and opens the details dialog with `xaml_interact`, which surfaces latent failures. Then it fixes all 10 failures and verifies that the list is empty.
 
